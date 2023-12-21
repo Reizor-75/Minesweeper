@@ -1,0 +1,35 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: grey;
+}
+
+h1{
+  display: flex;
+  justify-content: center;
+}
+
+section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sidebar{  
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  width: 20%;
+  margin: 0 0 8px 0;
+}
+
+.gameArea{
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  width: 80%;
+  margin: 0 0 0 8px;
+}
