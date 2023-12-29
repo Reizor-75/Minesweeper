@@ -1,5 +1,6 @@
-import {Tile} from "./Tile.js";
+import {Board} from "./Board.js";
 console.log("tester");
 
-const t = new Tile();
-console.log(t);
+const b = new Board(3, 3, 3);
+b.initBoard();
+console.log(b);
