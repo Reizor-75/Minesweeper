@@ -3,8 +3,8 @@ import {Tile} from "./Tile.js";
 
 export class Board{
 
-  constructor(boardSize, flagCount, mineCount){
-    this.flagCount = flagCount;
+  constructor(boardSize, mineCount){
+    this.flagCount = mineCount;
     this.mineCount = mineCount;
     this.boardSize = boardSize;
   }

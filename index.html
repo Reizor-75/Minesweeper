@@ -11,9 +11,9 @@
     href="./assets/Broom.png" 
     type="image/png"
     sizes="32x32">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-    </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  </style>
 
   <title>Sweeper of Mines</title>
 
@@ -23,7 +23,19 @@
 </body>
   <h1>Minesweeper</h1>
   <section>
-    <div class="sidebar">Sidebar</div>
+    <div class="sidebar">
+      <select id="difficulty-menu"> 
+        <option value="Easy">Easy</option> 
+        <option value="Medium">Medium</option> 
+        <option value="Hard">Hard</option> 
+      </select>
+      <section class="themesSection">Themes
+        <div class="theme" id="classic"><img src="./assets/16bit_link.png" width="80" height="80"></div>
+        <div class="theme" id="space-invaders"><img src="./assets/16bit_link.png" width="80" height="80"></div>
+        <div class="theme" id="Zelda"><img src="./assets/16bit_link.png" width=80 height="80"></div>
+      </section>
+    </div>
+
     <div class="game-Area">
       <div class="board-Header">
         <div id="flag-Counter"></div>
