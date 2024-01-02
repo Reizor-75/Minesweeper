@@ -14,11 +14,15 @@ const TimerEl = document.querySelector("#timer");
 const boardEl = document.createElement("div");
 
 /*----------------------------- Event Listeners -----------------------------*/
-resetButtonEl.addEventListener("click", b.reset);
+resetButtonEl.addEventListener("click", resetBoard);
 boardEl.addEventListener("click", b.handleLeftClick);
 boardEl.addEventListener("contextmenu", b.handleRightClick);
 
 
 b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);
 
-console.log(b);
+function resetBoard(){    
+  boardEl.innerHTML = "";
+  b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);
+  console.log(b);
+}

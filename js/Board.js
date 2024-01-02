@@ -7,10 +7,10 @@ export class Board{
     this.flagCount = flagCount;
     this.mineCount = mineCount;
     this.boardSize = boardSize;
-    this.tiles = [];
   }
 
-  initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl ){    
+  initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl ){   
+    this.tiles = [];
     flagCounterEl.innerHTML = `${this.flagCount}`;
     TimerEl.innerHTML = "tester";
 
@@ -135,16 +135,9 @@ export class Board{
       // const currentTile = this.getTile(tileLocation);
       tileEl.classList.add("flagged");
     }
-  }
-
-  
-  
+  }  
   //recursive method to clear all empty adjacent tiles
   clearEmptyTile(){
 
-  }
-
-  reset(){
-    console.log("reset");
   }
 }
