@@ -15,8 +15,8 @@ const boardEl = document.createElement("div");
 
 /*----------------------------- Event Listeners -----------------------------*/
 resetButtonEl.addEventListener("click", b.reset);
-boardEl.addEventListener("click", b.handleLeftClick)
-
+boardEl.addEventListener("click", b.handleLeftClick);
+boardEl.addEventListener("contextmenu", b.handleRightClick);
 
 
 b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);

@@ -85,42 +85,60 @@ export class Board{
       this.tiles[x][y+1].adjacentMines++;
     }
   }
+
   //reveals tiles
   handleLeftClick(evt){
     if(evt.target.className === "tile"){
-        const tileId = evt.target.id;
-        const tileEl = document.getElementById(tileId);
-        tileEl.classList.add("revealed");
+      const tileId = evt.target.id;
+      const tileEl = document.getElementById(tileId);
+      
+      // const tileLocation = this.getTileLocation(tileId);
+      // const currentTile = this.getTile(tileLocation);
+      tileEl.classList.add("revealed");
 
-        let row = tileId.replace("row", "");
-        row = row.slice(0, row.indexOf("c"));
-        let col = tileId.slice(tileId.indexOf("l")+1, tileId.length);
-        console.log(`row ${row}`);
-        console.log(`col ${col}`);
+    }
+        // console.log(`row ${row}`);
+        // console.log(`col ${col}`);
 
 
-        // console.log(this.tiles);
+        //console.log(this.tiles);
         // if(this.tiles[row][col].adjacentMines != 0){
         //   tileEl.textContent = this.tiles[row][col].adjacentMines;
         // }else{
         //   this.clearEmptyTile();
         // }
-    }
+  }
+  
+  getTileLocation(tileId){
+    const location =[];
+    
+    let row = tileId.replace("row", "");
+    row = row.slice(0, row.indexOf("c"));
+    location.push(row);
+    let col = tileId.slice(tileId.indexOf("l")+1, tileId.length);
+    location.push(col);
+  
+    return location;
+  }
+
+  getTile(location){
+    return this.tiles[location[0]][location[1]];
   }
 
   //place flags
   handleRightClick(evt){
+    evt.preventDefault();
     if(evt.target.className === "tile"){
       const tileId = evt.target.id;
       const tileEl = document.getElementById(tileId);
-
-      let row = tileId.replace("row", "");
-      row = row.slice(0, row.indexOf("c"));
-      let col = tileId.slice(tileId.indexOf("l")+1, tileId.length);
-      
+      // const tileLocation = this.getTileLocation(tileId);
+      // const currentTile = this.getTile(tileLocation);
+      tileEl.classList.add("flagged");
     }
   }
 
+  
+  
   //recursive method to clear all empty adjacent tiles
   clearEmptyTile(){
 
