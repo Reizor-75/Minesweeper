@@ -1,9 +1,6 @@
 
 import {Tile} from "./Tile.js";
 
-
-
-
 export class Board{
 
   constructor(boardSize, flagCount, mineCount){
@@ -22,7 +19,7 @@ export class Board{
       for(let j = 0; j < this.boardSize; j++){
         const tileEl = document.createElement("div");
         tileEl.className = `tile`;
-        tileEl.id = `${i}${j}`
+        tileEl.id = `row${i}col${j}`
         tileEl.innerHTML = ` `;
         boardEl.appendChild(tileEl);
 
@@ -88,18 +85,40 @@ export class Board{
       this.tiles[x][y+1].adjacentMines++;
     }
   }
-
   //reveals tiles
   handleLeftClick(evt){
-    
-    // if reveal tile adacent mine value is 0
-    // this.clearEmptyTile();
+    if(evt.target.className === "tile"){
+        const tileId = evt.target.id;
+        const tileEl = document.getElementById(tileId);
+        tileEl.classList.add("revealed");
 
+        let row = tileId.replace("row", "");
+        row = row.slice(0, row.indexOf("c"));
+        let col = tileId.slice(tileId.indexOf("l")+1, tileId.length);
+        console.log(`row ${row}`);
+        console.log(`col ${col}`);
+
+
+        // console.log(this.tiles);
+        // if(this.tiles[row][col].adjacentMines != 0){
+        //   tileEl.textContent = this.tiles[row][col].adjacentMines;
+        // }else{
+        //   this.clearEmptyTile();
+        // }
+    }
   }
 
   //place flags
-  handleRightClick(){
+  handleRightClick(evt){
+    if(evt.target.className === "tile"){
+      const tileId = evt.target.id;
+      const tileEl = document.getElementById(tileId);
 
+      let row = tileId.replace("row", "");
+      row = row.slice(0, row.indexOf("c"));
+      let col = tileId.slice(tileId.indexOf("l")+1, tileId.length);
+      
+    }
   }
 
   //recursive method to clear all empty adjacent tiles
@@ -108,6 +127,6 @@ export class Board{
   }
 
   reset(){
-
+    console.log("reset");
   }
 }
