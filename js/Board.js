@@ -9,27 +9,30 @@ export class Board{
     this.boardSize = boardSize;
   }
 
-  initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl ){   
+  initBoard(flagCounterEl, TimerEl, boardAreaEl ){   
     this.tiles = [];
     flagCounterEl.innerHTML = `${this.flagCount}`;
     TimerEl.innerHTML = "tester";
 
     for(let i = 0; i < this.boardSize; i++){
       let row = [];
+      const rowEl = document.createElement("div");
+      rowEl.className = `row ${i}`;
+      
       for(let j = 0; j < this.boardSize; j++){
         const tileEl = document.createElement("div");
         tileEl.className = `tile`;
-        tileEl.id = `row${i}col${j}`
+        tileEl.id = `X${i}Y${j}`
         tileEl.innerHTML = ` `;
-        boardEl.appendChild(tileEl);
+        rowEl.appendChild(tileEl);
 
         row.push(new Tile());        
       }
-
+      boardAreaEl.appendChild(rowEl);
+      console.log(boardAreaEl);
       this.tiles.push(row);
     }
     this.placeMines();
-    boardAreaEl.appendChild(boardEl);
   }
 
   placeMines(){
@@ -92,30 +95,28 @@ export class Board{
       const tileId = evt.target.id;
       const tileEl = document.getElementById(tileId);
       
-      // const tileLocation = this.getTileLocation(tileId);
-      // const currentTile = this.getTile(tileLocation);
-      tileEl.classList.add("revealed");
-
+      const tileLocation = this.getTileLocation(tileId);
+      const currentTile = this.getTile(tileLocation);
+      if(!currentTile.isFlagged){
+        currentTile.revealTile();
+        tileEl.classList.add("revealed");
+        
+        if(currentTile.adjacentMines != 0){
+          tileEl.textContent = currentTile.adjacentMines;
+        }
+        else{
+          this.clearEmptyTile();
+        }
+      }
     }
-        // console.log(`row ${row}`);
-        // console.log(`col ${col}`);
-
-
-        //console.log(this.tiles);
-        // if(this.tiles[row][col].adjacentMines != 0){
-        //   tileEl.textContent = this.tiles[row][col].adjacentMines;
-        // }else{
-        //   this.clearEmptyTile();
-        // }
   }
   
   getTileLocation(tileId){
     const location =[];
     
-    let row = tileId.replace("row", "");
-    row = row.slice(0, row.indexOf("c"));
+    let row = row.slice(row.indexOf("X"), row.indexOf("Y"));
     location.push(row);
-    let col = tileId.slice(tileId.indexOf("l")+1, tileId.length);
+    let col = tileId.slice(tileId.indexOf("Y")+1, tileId.length);
     location.push(col);
   
     return location;
@@ -128,12 +129,20 @@ export class Board{
   //place flags
   handleRightClick(evt){
     evt.preventDefault();
-    if(evt.target.className === "tile"){
+    if(evt.target.classList.contains("tile")){
       const tileId = evt.target.id;
       const tileEl = document.getElementById(tileId);
-      // const tileLocation = this.getTileLocation(tileId);
-      // const currentTile = this.getTile(tileLocation);
-      tileEl.classList.add("flagged");
+      const tileLocation = this.getTileLocation(tileId);
+      const currentTile = this.getTile(tileLocation);
+
+      currentTile.addFlag();   
+      if(currentTile.isFlagged) {
+        tileEl.classList.add("flagged");
+      }
+      else {
+        tileEl.classList.remove("flagged");
+      }
+
     }
   }  
   //recursive method to clear all empty adjacent tiles

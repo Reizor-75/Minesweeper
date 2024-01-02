@@ -12,15 +12,14 @@ export class Tile{
 
   addFlag(){
     if(!this.isRevealed){
-      this.isFlagged = this.isFlagged ? false : true;
-
+      if(this.isFlagged) this.isFlagged = false;
+      else this.isFlagged = true;
     }
   }
 
   revealTile(){    
-    if(!this.isRevealed){
+    if(!this.isRevealed && !this.isFlagged){
       this.isRevealed = true;
-      
     }
   }
 

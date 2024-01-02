@@ -11,18 +11,25 @@ const boardAreaEl = document.querySelector(".board-Area");
 const flagCounterEl = document.querySelector("#flag-Counter");
 const resetButtonEl = document.querySelector("#reset-Button");
 const TimerEl = document.querySelector("#timer");
-const boardEl = document.createElement("div");
 
 /*----------------------------- Event Listeners -----------------------------*/
 resetButtonEl.addEventListener("click", resetBoard);
-boardEl.addEventListener("click", b.handleLeftClick);
-boardEl.addEventListener("contextmenu", b.handleRightClick);
+boardAreaEl.addEventListener("click", leftClick);
+boardAreaEl.addEventListener("contextmenu", rightClick);
 
 
-b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);
+b.initBoard(flagCounterEl, TimerEl, boardAreaEl);
 
 function resetBoard(){    
-  boardEl.innerHTML = ""
-  b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);
+  boardAreaEl.innerHTML = ""
+  b.initBoard(flagCounterEl, TimerEl, boardAreaEl);
   console.log(b);
+}
+
+function leftClick(evt){
+  b.handleLeftClick(evt);
+}
+
+function rightClick(evt){
+  b.handleRightClick(evt);
 }
