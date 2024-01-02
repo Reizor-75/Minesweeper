@@ -2,12 +2,7 @@
 import {Tile} from "./Tile.js";
 
 
-/*---- Cached Element References ----*/
-const boardAreaEl = document.querySelector(".boardArea");
-const flagCounterEl = document.querySelector("#flagCounter");
-const resetButtonEl = document.querySelector("#resetButton");
-const TimerEl = document.querySelector("#timer");
-const boardEl = document.createElement("div");
+
 
 export class Board{
 
@@ -18,7 +13,7 @@ export class Board{
     this.tiles = [];
   }
 
-  initBoard(){
+  initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl ){    
     flagCounterEl.innerHTML = `${this.flagCount}`;
     TimerEl.innerHTML = "tester";
 

@@ -42,7 +42,10 @@ section{
 }
 
 .boardArea{      
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 20px);
+  grid-template-rows: repeat(3, 20px);
+  /*  */
 }
 
 .tile{
