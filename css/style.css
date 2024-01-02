@@ -12,7 +12,6 @@ h1{
 
 section{
   display: flex;
-  /* flex-direction: row; */
   justify-content: center;
 }
 
@@ -47,9 +46,6 @@ section{
   padding: 10px;
 }
 
-.row{
-  
-}
 .tile{
   display: flex;
   justify-content: center;
@@ -61,10 +57,12 @@ section{
   border-color: grey;
   font-family: 'Press Start 2P';
   font-size: 32px;
+  box-shadow: inset -.05em -.05em dimgray, inset .05em .05em white;;
 }
 
 .revealed{  
   background-color: darkgray;
+  box-shadow: none;
 }
 
 .flagged{  

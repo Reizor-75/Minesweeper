@@ -23,7 +23,7 @@ b.initBoard(flagCounterEl, TimerEl, boardAreaEl);
 function resetBoard(){    
   boardAreaEl.innerHTML = ""
   b.initBoard(flagCounterEl, TimerEl, boardAreaEl);
-  console.log(b);
+  // console.log(b);
 }
 
 function leftClick(evt){
