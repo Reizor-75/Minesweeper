@@ -41,33 +41,34 @@ export class Board{
       const randomX = Math.floor(Math.random() * this.boardSize);
       const randomY = Math.floor(Math.random() * this.boardSize);
 
-      if(!this.tiles[randomY][randomX].containsMine){
-        this.tiles[randomY][randomX].containsMine = true;
+      if(!this.tiles[randomX][randomY].containsMine){
+        this.tiles[randomX][randomY].containsMine = true;
         remainingMines--;
+        this.adjustAdjacentMines(randomX,randomY);
       }
-      this.adjustAdjacentMines(randomY,randomX);
-    }
+      }
+    console.log(this.tiles);
   }
 
   adjustAdjacentMines(x, y){
-    // left coloum
-    // if(x-1 >= 0){
-    //   this.tiles[x-1][y].adjacentMines++;
+    // left side
+    if(x-1 >= 0){
+      this.tiles[x-1][y].adjacentMines++;
 
-    //   if(y-1 >= 0) this.tiles[x-1][y-1].adjacentMines++;
-    //   if(y+1 < this.boardSize) this.tiles[x-1][y+1].adjacentMines++;
-    // }
+      if(y-1 >= 0) this.tiles[x-1][y-1].adjacentMines++;
+      if(y+1 < this.boardSize) this.tiles[x-1][y+1].adjacentMines++;
+    }
     //right coloum
     if(x+1 < this.boardSize){
-      console.log(this.tiles[x+1][y]);
+      // console.log(this.tiles[x+1][y]);
       this.tiles[x+1][y].adjacentMines++;
 
-      // if(y-1 >= 0) this.tiles[x+1][y-1].adjacentMines++;
-      // if(y+1 < this.boardSize) this.tiles[x+1][y+1].adjacentMines++;
+      if(y-1 >= 0) this.tiles[x+1][y-1].adjacentMines++;
+      if(y+1 < this.boardSize) this.tiles[x+1][y+1].adjacentMines++;
     }
-    // //center coloum
-    // if(y-1 >= 0) this.tiles[x][y-1].adjacentMines++;
-    // if(y+1 < this.boardSize) this.tiles[x][y+1].adjacentMines++;
+    //center coloum
+    if(y-1 >= 0) this.tiles[x][y-1].adjacentMines++;
+    if(y+1 < this.boardSize) this.tiles[x][y+1].adjacentMines++;
   }
 
   //reveals tiles
@@ -112,6 +113,7 @@ export class Board{
         }
       }
     }
+    // console.log(this.tiles);
   }
 
   updatefontColor(numOfMines, tileEl){
