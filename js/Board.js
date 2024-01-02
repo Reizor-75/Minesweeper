@@ -50,43 +50,23 @@ export class Board{
   }
 
   adjustAdjacentMines(x, y){
-    //left coloum
+    // left coloum
     if(x-1 >= 0){
-      // console.log("left center");
       this.tiles[x-1][y].adjacentMines++;
 
-      if(y-1 >= 0){
-      //   console.log("upper left corner");
-        this.tiles[x-1][y-1].adjacentMines++;
-      }
-      if(y+1 < this.boardSize){
-        // console.log("bottom left corner");
-        this.tiles[x-1][y+1].adjacentMines++;
-      }
+      if(y-1 >= 0) this.tiles[x-1][y-1].adjacentMines++;
+      if(y+1 < this.boardSize) this.tiles[x-1][y+1].adjacentMines++;
     }
     //right coloum
     if(x+1 < this.boardSize){
-      // console.log("right center");
       this.tiles[x+1][y].adjacentMines++;
 
-      if(y-1 >= 0){
-        // console.log("upper right corner");
-        this.tiles[x+1][y-1].adjacentMines++;
-      }
-      if(y+1 < this.boardSize){
-        // console.log("bottom right corner");
-        this.tiles[x+1][y+1].adjacentMines++;
-      }
+      if(y-1 >= 0) this.tiles[x+1][y-1].adjacentMines++;
+      if(y+1 < this.boardSize) this.tiles[x+1][y+1].adjacentMines++;
     }
     //center coloum
-    if(y-1 >= 0){
-      // console.log("upper center")
-      this.tiles[x][y-1].adjacentMines++;
-    }
-    if(y+1 < this.boardSize){
-      // console.log("bottom center")
-      this.tiles[x][y+1].adjacentMines++;
-    }
+    if(y-1 >= 0) this.tiles[x][y-1].adjacentMines++;
+    if(y+1 < this.boardSize) this.tiles[x][y+1].adjacentMines++;
   }
 
   //reveals tiles
@@ -100,12 +80,15 @@ export class Board{
       if(!currentTile.isFlagged){
         currentTile.revealTile();
         tileEl.classList.add("revealed");
-        
-        if(currentTile.adjacentMines != 0){
-          tileEl.textContent = currentTile.adjacentMines;
-        }
+        if(currentTile.containsMine)
+          tileEl.textContent = "M";
         else{
-          this.clearEmptyTile();
+          if(currentTile.adjacentMines != 0){
+            tileEl.textContent = currentTile.adjacentMines;
+          }
+          else{
+            this.clearEmptyTile();
+          }
         }
       }
     }
