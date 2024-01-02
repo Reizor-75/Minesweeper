@@ -6,10 +6,6 @@ export class Tile{
     this.adjacentMines = 0;
   }
 
-  addMine(){
-    if(!this.containsMine) this.containsMine = true;
-  }
-
   addFlag(){
     if(!this.isRevealed){
       if(this.isFlagged) this.isFlagged = false;
