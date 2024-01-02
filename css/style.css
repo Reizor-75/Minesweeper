@@ -44,6 +44,7 @@ section{
 .board-Area{
   display: flex;
   justify-content: center;
+  padding: 10px;
 }
 
 .row{
@@ -54,21 +55,48 @@ section{
   justify-content: center;
   align-items: center;
   background-color: lightgray;
-  width: 50px;
-  height: 50px;
-  margin: 1px;
+  width: 70px;
+  height: 70px;
+  border: solid 1px;
+  border-color: grey;
+  font-family: 'Press Start 2P';
+  font-size: 32px;
 }
 
 .revealed{  
   background-color: darkgray;
-  width: 50px;
-  height: 50px;
-  margin: 1px;
 }
 
 .flagged{  
   background-color: orange;
-  width: 50px;
-  height: 50px;
-  margin: 1px;
+}
+
+.one{
+  color:blue;
+}
+
+.two{
+  color:green;
+}
+
+.three{
+  color: red;
+}
+
+.four{
+  color: darkblue;
+}
+
+.five{
+  color: darkred;
+}
+
+.six{
+  color: darkcyan;
+}
+.seven{
+  color: black;
+}
+.eight{
+  color: dimgray;
 }

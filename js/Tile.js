@@ -22,21 +22,4 @@ export class Tile{
       this.isRevealed = true;
     }
   }
-
-  // might move outside of class
-  // updateImage(){        
-  //   if(this.isRevealed){
-  //     if(!this.containsMine){
-  //       //display adjacent mine number
-  //     }
-  //     else{
-  //       //display mine
-  //     }
-  //   }
-  //   else{
-  //     if(this.isFlagged){
-  //       //display flag
-  //     }
-  //   }
-  // }
 }

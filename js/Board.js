@@ -29,7 +29,6 @@ export class Board{
         row.push(new Tile());        
       }
       boardAreaEl.appendChild(rowEl);
-      console.log(boardAreaEl);
       this.tiles.push(row);
     }
     this.placeMines();
@@ -73,27 +72,12 @@ export class Board{
   handleLeftClick(evt){
     if(evt.target.className === "tile"){
       const tileId = evt.target.id;
-      const tileEl = document.getElementById(tileId);
-      
       const tileLocation = this.getTileLocation(tileId);
       const currentTile = this.getTile(tileLocation);
-      if(!currentTile.isFlagged){
-        currentTile.revealTile();
-        tileEl.classList.add("revealed");
-        if(currentTile.containsMine)
-          tileEl.textContent = "M";
-        else{
-          if(currentTile.adjacentMines != 0){
-            tileEl.textContent = currentTile.adjacentMines;
-          }
-          else{
-            this.clearEmptyTile();
-          }
-        }
-      }
+      this.updateTileDisplay(currentTile, tileLocation);
     }
   }
-  
+
   getTileLocation(tileId){
     const location =[];    
     let row = tileId.slice(1, tileId.indexOf("Y"));
@@ -108,6 +92,37 @@ export class Board{
     return this.tiles[location[0]][location[1]];
   }
 
+  updateTileDisplay(currentTile, tileLocation){
+    const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
+    if(!currentTile.isFlagged){
+      currentTile.revealTile();
+      tileEl.classList.add("revealed");
+
+      if(currentTile.containsMine)
+        tileEl.textContent = "M";
+      else{
+        if(currentTile.adjacentMines != 0){
+          this.updatefontColor(currentTile.adjacentMines, tileEl);
+          tileEl.textContent = currentTile.adjacentMines;
+
+        }
+        else{
+          this.clearEmptyTile(tileLocation);
+        }
+      }
+    }
+  }
+
+  updatefontColor(numOfMines, tileEl){
+    if(numOfMines === 1) tileEl.classList.add("one");
+    else if(numOfMines === 2) tileEl.classList.add("two");
+    else if(numOfMines === 3) tileEl.classList.add("three");
+    else if(numOfMines === 4) tileEl.classList.add("four");
+    else if(numOfMines === 5) tileEl.classList.add("five");
+    else if(numOfMines === 6) tileEl.classList.add("six");
+    else if(numOfMines === 7) tileEl.classList.add("seven");
+    else tileEl.classList.add("eight");
+  }
   //place flags
   handleRightClick(evt){
     evt.preventDefault();
@@ -128,7 +143,7 @@ export class Board{
     }
   }  
   //recursive method to clear all empty adjacent tiles
-  clearEmptyTile(){
-
+  clearEmptyTile(tileLocation){
+    
   }
 }
