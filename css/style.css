@@ -12,7 +12,7 @@ h1{
 
 section{
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
 }
 
@@ -27,9 +27,28 @@ section{
 
 .gameArea{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   color: white;
   background-color: black;
   width: 80%;
   margin: 0 0 0 8px;
 }
+
+.boardHeader{  
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(43, 55, 75);
+}
+
+.boardArea{      
+  display: flex;
+}
+
+.tile{
+  background-color: grey;
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+}
+

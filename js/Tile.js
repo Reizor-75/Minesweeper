@@ -25,7 +25,18 @@ export class Tile{
   }
 
   updateImage(){        
-
+    if(this.isRevealed){
+      if(!this.containsMine){
+        //display adjacent mine number
+      }
+      else{
+        //display mine
+      }
+    }
+    else{
+      if(this.isFlagged){
+        //display flag
+      }
+    }
   }
 }
-
