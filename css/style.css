@@ -25,7 +25,7 @@ section{
   margin: 0 0 8px 0;
 }
 
-.gameArea{
+.game-Area{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,14 +35,14 @@ section{
   margin: 0 0 0 8px;
 }
 
-.boardHeader{  
+.board-Header{  
   display: flex;
   justify-content: space-around;
   background-color: rgb(43, 55, 75);
 }
 
-.boardArea{      
-
+.board-Area{      
+  display: grid;
   /*  */
 }
 

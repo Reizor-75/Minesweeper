@@ -7,9 +7,9 @@ const b = new Board(3, 3, 3);
 
 
 /*---- Cached Element References ----*/
-const boardAreaEl = document.querySelector(".boardArea");
-const flagCounterEl = document.querySelector("#flagCounter");
-const resetButtonEl = document.querySelector("#resetButton");
+const boardAreaEl = document.querySelector(".board-Area");
+const flagCounterEl = document.querySelector("#flag-Counter");
+const resetButtonEl = document.querySelector("#reset-Button");
 const TimerEl = document.querySelector("#timer");
 const boardEl = document.createElement("div");
 
@@ -22,7 +22,7 @@ boardEl.addEventListener("contextmenu", b.handleRightClick);
 b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);
 
 function resetBoard(){    
-  boardEl.innerHTML = "";
+  boardEl.innerHTML = ""
   b.initBoard(flagCounterEl, TimerEl, boardEl, boardAreaEl);
   console.log(b);
 }
