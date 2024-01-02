@@ -41,11 +41,14 @@ section{
   background-color: rgb(43, 55, 75);
 }
 
-.board-Area{      
-  display: grid;
-  /*  */
+.board-Area{
+  display: flex;
+  justify-content: center;
 }
 
+.row{
+  
+}
 .tile{
   background-color: lightgray;
   width: 50px;

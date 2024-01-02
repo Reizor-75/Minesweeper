@@ -112,9 +112,8 @@ export class Board{
   }
   
   getTileLocation(tileId){
-    const location =[];
-    
-    let row = row.slice(row.indexOf("X"), row.indexOf("Y"));
+    const location =[];    
+    let row = tileId.slice(1, tileId.indexOf("Y"));
     location.push(row);
     let col = tileId.slice(tileId.indexOf("Y")+1, tileId.length);
     location.push(col);
