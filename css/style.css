@@ -114,6 +114,10 @@ section{
   background-color: darkgray;
   box-shadow: none;
 }
+.revealedMine{
+  background-color: red;
+  box-shadow: none;
+}
 
 .flagged{  
   background-color: orange;

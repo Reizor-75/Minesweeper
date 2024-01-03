@@ -36,6 +36,7 @@ export class Board{
 
   placeMines(){
     let remainingMines = this.mineCount;
+    this.mineLocations = [];
 
     while(remainingMines > 0){
       const randomX = Math.floor(Math.random() * this.boardSize);
@@ -43,10 +44,12 @@ export class Board{
 
       if(!this.tiles[randomX][randomY].containsMine){
         this.tiles[randomX][randomY].containsMine = true;
+        this.mineLocations.push([randomX , randomY]);
         remainingMines--;
         this.adjustAdjacentMines(randomX,randomY);
       }
-      }
+    }
+    console.log(this.mineLocations);
   }
 
   adjustAdjacentMines(x, y){
@@ -95,9 +98,11 @@ export class Board{
     if(!currentTile.isFlagged){
       //not flagged
       this.revealTile(currentTile,tileEl);
-      if(currentTile.containsMine)
+      if(currentTile.containsMine){
         //mine revealed
         tileEl.innerHTML = `<img src="./assets/Images/Mine.png" width="40" height="40">`;
+        tileEl.classList.add("revealedMine");        
+      }
       else{
         //tile revealed
         if(currentTile.adjacentMines != 0){
@@ -126,7 +131,7 @@ export class Board{
 
   updateFlagCounter(){
     const flagCounterEl = document.getElementById("flag-Counter");
-    flagCounterEl.innerHTML = `00${this.flagCount}`;
+    flagCounterEl.innerHTML = this.flagCount > 9 ? `0${this.flagCount}`:`00${this.flagCount}`;
   }
 
   //place flags
