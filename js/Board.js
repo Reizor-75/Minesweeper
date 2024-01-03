@@ -4,13 +4,13 @@ import {Tile} from "./Tile.js";
 export class Board{
 
   constructor(boardSize, mineCount){
-    this.flagCount = mineCount;
     this.mineCount = mineCount;
     this.boardSize = boardSize;
   }
 
-  initBoard(TimerEl, boardAreaEl ){   
-    this.tiles = [];
+  initBoard(TimerEl, boardAreaEl){   
+    this.tiles = [];    
+    this.flagCount = this.mineCount;
     this.updateFlagCounter();
     TimerEl.innerHTML = "tester";
 
