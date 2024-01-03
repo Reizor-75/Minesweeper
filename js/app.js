@@ -23,13 +23,15 @@ boardAreaEl.addEventListener("contextmenu", rightClick);
 diffEl.addEventListener ("change",changeDifficulty);
 themesEl.addEventListener ("click", changeTheme)
 
+//default difficulty
 currentDiff = easyDiff;
 initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
   tileCount = currentDiff[0]*currentDiff[0] - currentDiff[1];
   mineClicked = false;
-  b = new Board(currentDiff[0],currentDiff[1]);
+  // b = new Board(currentDiff[0],currentDiff[1]);
+  b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl);  
 }
 
