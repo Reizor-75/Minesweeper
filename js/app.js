@@ -1,10 +1,13 @@
 import {Board} from "./Board.js";
 
 /*-------------------------------- Constants --------------------------------*/
+const easyDiff = [9, 10];
+const mediumDiff = [16, 40];
+const hardDiff = [24, 99];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b, mineClicked, tileCount; 
+let b, currentDiff, mineClicked, tileCount; 
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
@@ -20,18 +23,19 @@ boardAreaEl.addEventListener("contextmenu", rightClick);
 diffEl.addEventListener ("change",changeDifficulty);
 themesEl.addEventListener ("click", changeTheme)
 
+currentDiff = easyDiff;
 initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
-  b = new Board(5, 3);
-  b.initBoard(TimerEl, boardAreaEl);  
-  tileCount = (5*5) - 3;
+  tileCount = currentDiff[0]*currentDiff[0] - currentDiff[1];
   mineClicked = false;
+  b = new Board(currentDiff[0],currentDiff[1]);
+  b.initBoard(TimerEl, boardAreaEl);  
 }
 
 function resetBoard(){    
   boardAreaEl.innerHTML = ""
-  b.initBoard(TimerEl, boardAreaEl);
+  initGame();
 }
 
 function leftClick(evt){
@@ -44,9 +48,9 @@ function rightClick(evt){
 }
 
 function changeDifficulty(evt){
-  if(evt.target.value === "Easy") b = new Board(9, 10);
-  else if(evt.target.value === "Medium") b = new Board(16, 40);
-  else b = new Board(24, 99);
+  if(evt.target.value === "Easy") currentDiff = easyDiff;
+  else if(evt.target.value === "Medium") currentDiff = mediumDiff;
+  else b = currentDiff = hardDiff;
 
   resetBoard();
 }
