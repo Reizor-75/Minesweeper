@@ -2,7 +2,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: grey;
+  background-color: cornflowerblue;
   font-family: 'Press Start 2P';
 }
 
@@ -24,6 +24,7 @@ section{
   color: white;
   background-color: rgb(25, 25, 25);
   width: 20%;
+  padding:16px;
   margin: 0 0 8px 0;
 }
 
@@ -44,10 +45,9 @@ section{
 .game-Area{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: gray;
-  border: solid 20px;
-  border-color: lightgrey;
+  justify-content: space-between;
+  background-color: grey;
+  /* border: inset 20px grey; */
   width: 80%;
   margin: 0 0 0 8px;
 }
@@ -55,7 +55,9 @@ section{
 .board-Header{  
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 10px 0px;
+  /* border: inset 20px lightgrey; */
 }
 
 #flag-Counter{
@@ -69,18 +71,30 @@ section{
   padding: 6px 0px;
   margin: 10px;
 }
+#reset-Button{
+  background-color: lightgrey;
+  border: outset white;
+  /* border: inset -.05em -.05em dimgray, inset .05em .05em white; */
+}
+
+#timer{  
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  background-color: black;
+  letter-spacing: 3px;
+  text-indent: 3px;
+  padding: 6px 0px;
+  margin: 10px;
+}
+
 .board-Area{
   display: flex;
   justify-content: center;
-  background-color: gray;
-  border-top: solid 20px;
-  border-color: lightgrey;
-  padding: 10px;
-}
-.timer{  
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: lightgrey;  
+  /* border: inset 10px lightgrey; */
+  padding: 20px;
 }
 
 .tile{
@@ -93,7 +107,7 @@ section{
   border: solid 1px;
   border-color: grey;
   font-size: 32px;
-  box-shadow: inset -.05em -.05em dimgray, inset .05em .05em white;;
+  box-shadow: inset -.05em -.05em dimgray, inset .05em .05em white;
 }
 
 .revealed{  

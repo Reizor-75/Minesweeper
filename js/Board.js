@@ -12,7 +12,7 @@ export class Board{
     this.tiles = [];    
     this.flagCount = this.mineCount;
     this.updateFlagCounter();
-    TimerEl.innerHTML = "tester";
+    TimerEl.innerHTML = `000`;
 
     for(let i = 0; i < this.boardSize; i++){
       let row = [];
@@ -126,7 +126,7 @@ export class Board{
 
   updateFlagCounter(){
     const flagCounterEl = document.getElementById("flag-Counter");
-    flagCounterEl.innerHTML = `${this.flagCount}`;
+    flagCounterEl.innerHTML = `00${this.flagCount}`;
   }
 
   //place flags
@@ -142,7 +142,7 @@ export class Board{
 
       if(currentTile.isFlagged) {
         if(this.flagCount >0){
-          tileEl.classList.add("flagged");
+          tileEl.innerHTML = `<img src="./assets/Images/Flag.png" width=40 height="40">`
           this.flagCount--;
           }
       }
