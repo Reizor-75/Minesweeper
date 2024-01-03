@@ -5,6 +5,7 @@ import {Board} from "./Board.js";
 
 /*---------------------------- Variables (state) ----------------------------*/
 let b = new Board(5, 3);
+let mineClicked, tileCount; 
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
@@ -31,6 +32,7 @@ function resetBoard(){
 
 function leftClick(evt){
   b.handleLeftClick(evt);
+  checkForWin();
 }
 
 function rightClick(evt){
@@ -47,4 +49,10 @@ function changeDifficulty(evt){
 
 function changeTheme(evt){
   console.log(evt.target.id);
+}
+
+function checkForWin(){
+  if(tileCount === 0){
+    console.log("winner");
+  }
 }

@@ -95,7 +95,9 @@ export class Board{
     if(!currentTile.isFlagged){
       this.revealTile(currentTile,tileEl);
       if(currentTile.containsMine)
+        //mine clicked
         tileEl.innerHTML = `<img src="./assets/Mine.png" width="40" height="40">`;
+
       else{
         if(currentTile.adjacentMines != 0){
           this.updatefontColor(currentTile.adjacentMines, tileEl);
