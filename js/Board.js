@@ -47,7 +47,6 @@ export class Board{
         this.adjustAdjacentMines(randomX,randomY);
       }
       }
-    console.log(this.tiles);
   }
 
   adjustAdjacentMines(x, y){
@@ -76,8 +75,7 @@ export class Board{
     if(evt.target.className === "tile"){
       const tileId = evt.target.id;
       const tileLocation = this.getTileLocation(tileId);
-      const currentTile = this.getTile(tileLocation);
-      this.updateTileDisplay(currentTile, tileLocation);
+      this.updateTileDisplay(tileLocation);
     }
   }
 
@@ -91,11 +89,8 @@ export class Board{
     return location;
   }
 
-  getTile(location){
-    return this.tiles[location[0]][location[1]];
-  }
-
-  updateTileDisplay(currentTile, tileLocation){
+  updateTileDisplay(tileLocation){
+    const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
     const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
     if(!currentTile.isFlagged){
       currentTile.revealTile();
@@ -159,6 +154,6 @@ export class Board{
   }  
   //recursive method to clear all empty adjacent tiles
   clearEmptyTile(tileLocation){
-    
+  
   }
 }
