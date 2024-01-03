@@ -52,7 +52,7 @@ function rightClick(evt){
 function changeDifficulty(evt){
   if(evt.target.value === "Easy") currentDiff = easyDiff;
   else if(evt.target.value === "Medium") currentDiff = mediumDiff;
-  else b = currentDiff = hardDiff;
+  else currentDiff = hardDiff;
 
   resetBoard();
 }
