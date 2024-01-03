@@ -82,9 +82,9 @@ export class Board{
   getTileLocation(tileId){
     const location =[];    
     let row = tileId.slice(1, tileId.indexOf("Y"));
-    location.push(row);
+    location.push(parseInt(row));
     let col = tileId.slice(tileId.indexOf("Y")+1, tileId.length);
-    location.push(col);
+    location.push(parseInt(col));
   
     return location;
   }
@@ -93,22 +93,19 @@ export class Board{
     const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
     const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
     if(!currentTile.isFlagged){
-      currentTile.revealTile();
-      tileEl.classList.add("revealed");
-
+      this.revealTile(currentTile,tileEl);
       if(currentTile.containsMine)
-        tileEl.textContent = "M";
+        tileEl.innerHTML = `<img src="./assets/Mine.png" width="40" height="40">`;
       else{
         if(currentTile.adjacentMines != 0){
           this.updatefontColor(currentTile.adjacentMines, tileEl);
           tileEl.textContent = currentTile.adjacentMines;
         }
         else{
-          this.clearEmptyTile(tileLocation);
+          this.clearTiles(tileLocation);
         }
       }
     }
-    // console.log(this.tiles);
   }
 
   updatefontColor(numOfMines, tileEl){
@@ -134,7 +131,7 @@ export class Board{
       const tileId = evt.target.id;
       const tileEl = document.getElementById(tileId);
       const tileLocation = this.getTileLocation(tileId);
-      const currentTile = this.getTile(tileLocation);
+      const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
 
       currentTile.addFlag();   
 
@@ -152,8 +149,40 @@ export class Board{
 
     }
   }  
+
+  revealTile(currentTile,tileEl){
+    currentTile.revealTile();
+    tileEl.classList.add("revealed");
+  }
+
+  clearTiles(tileLocation){
+    let tileArray = [];
+    tileArray = tileArray.concat(this.clearTileUpperRight(tileLocation));
+    //tileArray = tileArray.concat(this.clearTileBottomLeft(tileLocation));
+    console.log(tileArray);
+  }
   //recursive method to clear all empty adjacent tiles
-  clearEmptyTile(tileLocation){
-  
+  clearTileUpperRight(tileLocation){
+    const x = tileLocation[0];
+    const y = tileLocation[1];
+    let tileArray = [[x,y]];
+
+    if(this.tiles[x][y].adjacentMines === 0){
+      if(x+1 < this.boardSize) tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
+      if(y-1 >= 0) tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
+    }
+    return tileArray;
+  }
+
+  clearTileBottomLeft(tileLocation){
+    const x = tileLocation[0];
+    const y = tileLocation[1];
+    let tileArray = [this.tiles[x][y]];
+
+    if(this.tiles[x][y].adjacentMines === 0){
+      if(x-1 >= 0)  tileArray = tileArray.concat(this.clearTileUpperRight([x-1,y]));
+      if(y+1 < this.boardSize)  tileArray = tileArray.concat(this.clearTileUpperRight([x, y+1]));
+    }
+    return tileArray;
   }
 }

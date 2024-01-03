@@ -4,7 +4,7 @@ import {Board} from "./Board.js";
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b = new Board(9, 10);
+let b = new Board(5, 3);
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
