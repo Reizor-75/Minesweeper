@@ -56,7 +56,15 @@ section{
   background-color: rgb(43, 55, 75);
   padding: 10px 0px;
 }
-
+#flag-Counter{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  letter-spacing: 3px;
+  text-indent: 3px;
+  padding: 6px 0px;
+}
 .board-Area{
   display: flex;
   justify-content: center;
