@@ -93,17 +93,20 @@ export class Board{
     const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
     const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
     if(!currentTile.isFlagged){
+      //not flagged
       this.revealTile(currentTile,tileEl);
       if(currentTile.containsMine)
-        //mine clicked
-        tileEl.innerHTML = `<img src="./assets/Mine.png" width="40" height="40">`;
-
+        //mine revealed
+        tileEl.innerHTML = `<img src="./assets/Images/Mine.png" width="40" height="40">`;
       else{
+        //tile revealed
         if(currentTile.adjacentMines != 0){
+          //non-empty tile
           this.updatefontColor(currentTile.adjacentMines, tileEl);
           tileEl.textContent = currentTile.adjacentMines;
         }
         else{
+          //empty tile
           this.clearTiles(tileLocation);
         }
       }
