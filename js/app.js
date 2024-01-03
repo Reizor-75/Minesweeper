@@ -4,8 +4,7 @@ import {Board} from "./Board.js";
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b = new Board(5, 3);
-let mineClicked, tileCount; 
+let b, mineClicked, tileCount; 
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
@@ -21,13 +20,18 @@ boardAreaEl.addEventListener("contextmenu", rightClick);
 diffEl.addEventListener ("change",changeDifficulty);
 themesEl.addEventListener ("click", changeTheme)
 
-b.initBoard(TimerEl, boardAreaEl);
-
+initGame();
 /*-------------------------------- Functions --------------------------------*/
+function initGame(){
+  b = new Board(5, 3);
+  b.initBoard(TimerEl, boardAreaEl);  
+  tileCount = (5*5) - 3;
+  mineClicked = false;
+}
+
 function resetBoard(){    
   boardAreaEl.innerHTML = ""
   b.initBoard(TimerEl, boardAreaEl);
-  // console.log(b);
 }
 
 function leftClick(evt){
