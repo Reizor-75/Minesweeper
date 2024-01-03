@@ -3,6 +3,7 @@ body{
   flex-direction: column;
   justify-content: center;
   background-color: grey;
+  font-family: 'Press Start 2P';
 }
 
 h1{
@@ -18,7 +19,7 @@ section{
 .sidebar{  
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   color: white;
   background-color: rgb(25, 25, 25);
@@ -27,14 +28,13 @@ section{
 }
 
 #difficulty-menu{
-  margin: 10px;
+  margin: 24px;
 }
 
 .themesSection{ 
   display:flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 10px;
 }
 .theme{
   margin:10px;
@@ -54,10 +54,7 @@ section{
   display: flex;
   justify-content: space-around;
   background-color: rgb(43, 55, 75);
-}
-
-#flag-Counter{
-
+  padding: 10px 0px;
 }
 
 .board-Area{
@@ -75,7 +72,6 @@ section{
   height: 40px;
   border: solid 1px;
   border-color: grey;
-  font-family: 'Press Start 2P';
   font-size: 32px;
   box-shadow: inset -.05em -.05em dimgray, inset .05em .05em white;;
 }

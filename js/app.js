@@ -8,7 +8,6 @@ let b = new Board(9, 10);
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
-const flagCounterEl = document.querySelector("#flag-Counter");
 const resetButtonEl = document.querySelector("#reset-Button");
 const TimerEl = document.querySelector("#timer");
 const diffEl = document.querySelector("#difficulty-menu");
@@ -21,12 +20,12 @@ boardAreaEl.addEventListener("contextmenu", rightClick);
 diffEl.addEventListener ("change",changeDifficulty);
 themesEl.addEventListener ("click", changeTheme)
 
-b.initBoard(flagCounterEl, TimerEl, boardAreaEl);
+b.initBoard(TimerEl, boardAreaEl);
 
 /*-------------------------------- Functions --------------------------------*/
 function resetBoard(){    
   boardAreaEl.innerHTML = ""
-  b.initBoard(flagCounterEl, TimerEl, boardAreaEl);
+  b.initBoard(TimerEl, boardAreaEl);
   // console.log(b);
 }
 

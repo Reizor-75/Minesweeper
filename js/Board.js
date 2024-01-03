@@ -9,9 +9,9 @@ export class Board{
     this.boardSize = boardSize;
   }
 
-  initBoard(flagCounterEl, TimerEl, boardAreaEl ){   
+  initBoard(TimerEl, boardAreaEl ){   
     this.tiles = [];
-    flagCounterEl.innerHTML = `${this.flagCount}`;
+    this.updateFlagCounter();
     TimerEl.innerHTML = "tester";
 
     for(let i = 0; i < this.boardSize; i++){
@@ -126,6 +126,12 @@ export class Board{
     else if(numOfMines === 7) tileEl.classList.add("seven");
     else tileEl.classList.add("eight");
   }
+
+  updateFlagCounter(){
+    const flagCounterEl = document.getElementById("flag-Counter");
+    flagCounterEl.innerHTML = `${this.flagCount}`;
+  }
+
   //place flags
   handleRightClick(evt){
     evt.preventDefault();
@@ -136,12 +142,18 @@ export class Board{
       const currentTile = this.getTile(tileLocation);
 
       currentTile.addFlag();   
+
       if(currentTile.isFlagged) {
-        tileEl.classList.add("flagged");
+        if(this.flagCount >0){
+          tileEl.classList.add("flagged");
+          this.flagCount--;
+          }
       }
       else {
         tileEl.classList.remove("flagged");
+        this.flagCount++;
       }
+      this.updateFlagCounter();
 
     }
   }  
