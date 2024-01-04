@@ -1,10 +1,10 @@
 body{
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background-color: black;
   font-family: 'Press Start 2P';
-  padding:10px;
+  border: outset 6px lightgrey;   
+  margin: 0 10%;
 }
 .title{
   display: flex;  
@@ -21,6 +21,7 @@ section{
   display: flex;
   display: row;
   justify-content: center;
+  border: outset 6px lightgrey;
 }
 
 .sidebar{  
@@ -32,11 +33,13 @@ section{
   background-color: rgb(25, 25, 25);
   width: 20%;
   padding:16px;
-  /* margin: 0 0 8px 0; */
 }
 
 #difficulty-menu{
-  margin: 24px;
+  display: flex;
+  width:50%;
+  padding: 5px;
+  background-color: lightgrey
 }
 
 .themesSection{ 
@@ -54,21 +57,17 @@ section{
   flex-direction: column;
   justify-content: space-between;
   background-color: grey;
-  /* border: inset 20px grey; */
   width: 80%;
-  /* margin: 0 0 0 8px; */
 }
 
 .board-Header{  
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 10px 0px;
   border: solid 10px lightgrey;
-  border-bottom: none;;
-  /* border: inset 20px lightgrey; */
-  box-shadow: inset -.1em -.1em dimgray, inset .1em .1em white;
-
+  border-bottom: none;
+  box-shadow: inset .2em .2em dimgray, inset -.2em -.2em white;
 }
 
 #flag-Counter{
@@ -79,13 +78,14 @@ section{
   background-color: black;
   letter-spacing: 3px;
   text-indent: 3px;
-  padding: 6px 0px;
-  margin: 10px;
+  padding: 8px 4px;
+  margin: 10px;  
+  box-shadow: inset .1em .1em dimgray, inset -.1em -.1em lightgrey;
 }
+
 #reset-Button{
   background-color: lightgrey;
   border: outset white;
-  /* border: inset -.05em -.05em dimgray, inset .05em .05em white; */
 }
 
 #timer{  
@@ -96,15 +96,17 @@ section{
   background-color: black;
   letter-spacing: 3px;
   text-indent: 3px;
-  padding: 6px 0px;
+  padding: 8px 4px;
   margin: 10px;
+  box-shadow: inset .1em .1em dimgray, inset -.1em -.1em lightgrey;
 }
 
 .board-Area{
   display: flex;
   justify-content: center;
   border: solid 10px lightgrey;
-  padding: 20px;
+  padding: 20px;  
+  box-shadow: inset .2em .2em dimgray, inset -.2em -.2em white;
 }
 
 .tile{
@@ -131,6 +133,12 @@ section{
   width: 25px;
   height: 25px;  
   font-size: 16px;
+}
+
+.zelda{
+  background-color: #4a6373;
+background-image: url("data:image/svg+xml,%3Csvg width='38' height='38' viewBox='0 0 38 38' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='bevel-circle' fill='%23314a5a' fill-opacity='0.4'%3E%3Cpath d='M10.414 29l-8 8h33.172l-8-8H10.414zM9 27.586l-8 8V2.414l8 8v17.172zM10.414 9l-8-8h33.172l-8 8H10.414zM29 10.414l8-8v33.172l-8-8V10.414zM11 11h16v16H11V11zm8 14c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM0 0h38v38H0V0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
 }
 
 .revealed{  
