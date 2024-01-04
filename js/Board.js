@@ -164,8 +164,9 @@ export class Board{
 
   clearTiles(tileLocation){
     let tileArray = [];
-    tileArray = tileArray.concat(this.clearTileUpperRight(tileLocation));
-    //tileArray = tileArray.concat(this.clearTileBottomLeft(tileLocation));
+    this.clearTileUpperRight(tileLocation);
+    //tileArray = tileArray.concat(this.clearTileUpperRight(tileLocation));
+    // tileArray = tileArray.concat(this.clearTileBottomLeft(tileLocation));
     console.log(tileArray);
   }
   //recursive method to clear all empty adjacent tiles
@@ -176,26 +177,36 @@ export class Board{
 
     //does not run if current tile has been revealed
     if(this.tiles[x][y].isRevealed) return;
-    
+
+    //reveal tile
+    this.tiles[x][y].revealTile();
     let tileArray = [[x,y]];
 
     if(this.tiles[x][y].adjacentMines === 0 ){
       // check to the right then up
       //check to see if clearTileUpperRight return an populated array
-      if(this.clearTileUpperRight([x+1,y])) tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
-      if(this.clearTileUpperRight([x,y-1]))tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
+      const checkRight = this.clearTileUpperRight([x+1,y]);
+      const checkUp = this.clearTileUpperRight([x,y-1]);
+      if(checkRight) this.updateTileDisplay([x+1,y]) //tileArray = tileArray.concat(checkRight);
+      if(checkUp)  this.updateTileDisplay([x,y-1]) //tileArray = tileArray.concat(checkUp);
     }
     return tileArray;
   }
 
   clearTileBottomLeft(tileLocation){
+    if(this.checkforEdge(tileLocation)) return;
     const x = tileLocation[0];
     const y = tileLocation[1];
-    let tileArray = [this.tiles[x][y]];
 
-    if(this.tiles[x][y].adjacentMines === 0){
-      if(x-1 >= 0)  tileArray = tileArray.concat(this.clearTileUpperRight([x-1,y]));
-      if(y+1 < this.boardSize)  tileArray = tileArray.concat(this.clearTileUpperRight([x, y+1]));
+    //does not run if current tile has been revealed
+    if(this.tiles[x][y].isRevealed) return;
+    let tileArray = [[x,y]];
+
+    if(this.tiles[x][y].adjacentMines === 0 ){
+      // check to the right then up
+      //check to see if clearTileUpperRight return an populated array
+      if(this.clearTileBottomLeft([x-1,y])) tileArray = tileArray.concat(this.clearTileBottomLeft([x-1,y]));
+      if(this.clearTileBottomLeft([x,y+1]))tileArray = tileArray.concat(this.clearTileBottomLeft([x,y+1]));
     }
     return tileArray;
   }
