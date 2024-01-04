@@ -184,19 +184,16 @@ export class Board{
     //does not run if current tile has been revealed
     if(this.tiles[x][y].isRevealed) return;
 
-    //reveal tile
+    //reveal current tile
     this.tiles[x][y].revealTile();
-    let tileArray = [[x,y]];
+    this.updateTileDisplay([x,y]); 
 
     if(this.tiles[x][y].adjacentMines === 0 ){
       // check to the right then up
       //check to see if clearTileUpperRight return an populated array
-      const checkRight = this.clearTileUpperRight([x+1,y]);
-      const checkUp = this.clearTileUpperRight([x,y-1]);
-      if(checkRight) this.updateTileDisplay([x+1,y]); //tileArray = tileArray.concat(checkRight);
-      if(checkUp)  this.updateTileDisplay([x,y-1]); //tileArray = tileArray.concat(checkUp);
+      this.clearTileUpperRight([x+1,y]);
+      this.clearTileUpperRight([x,y-1]);
     }
-    return tileArray;
   }
 
   clearTileBottomLeft(tileLocation){

@@ -28,8 +28,8 @@ currentDiff = easyDiff;
 initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
-  // b = new Board(currentDiff[0],currentDiff[1]);
-  b = new Board(5,3);
+  b = new Board(currentDiff[0],currentDiff[1]);
+  // b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl);  
 }
 
