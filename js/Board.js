@@ -117,8 +117,8 @@ export class Board{
         tileEl.classList.add("revealedMine"); 
         tileEl.style.backgroundImage = `url("${this.curAssets[0]}")`;
         tileEl.style.backgroundSize = `100%`;
-        let boardAreaEl = document.querySelector(".board-Area");
-        boardAreaEl.style.backgroundColor = "red";
+        let activeWinEl = document.querySelector(".active-Window");
+        activeWinEl.style.backgroundColor = "darkred";
         this.clickedMine = true;
       }
       else{
@@ -167,10 +167,12 @@ export class Board{
       const tileLocation = this.getTileLocation(tileId);
       const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
 
+      if(currentTile.isRevealed) return;
+      
       currentTile.toggleFlag();   
 
       if(currentTile.isFlagged) {
-        if(this.flagCount >0){  
+        if(this.flagCount > 0){  
           tileEl.style.backgroundImage = `url("${this.curAssets[4]}")`;
           tileEl.style.backgroundSize = `100%`;
           this.flagCount--;

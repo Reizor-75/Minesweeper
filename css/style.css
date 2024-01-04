@@ -8,6 +8,7 @@ body{
   min-width: 600px;
   margin: 0 10%;
 }
+
 .title{
   display: flex;  
   align-items: center;
@@ -21,7 +22,6 @@ body{
 
 .active-Window{
   display: flex;
-  display: row;
   justify-content: center;
   background-color: grey;
   border: outset 6px lightgrey;

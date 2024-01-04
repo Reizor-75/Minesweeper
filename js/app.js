@@ -43,7 +43,7 @@ function initGame(){
 
 function resetBoard(){  
   boardAreaEl.innerHTML = ""  
-  boardAreaEl.style.backgroundColor = "";
+  activeWinEl.style.backgroundColor = "";
   initGame();
 }
 
