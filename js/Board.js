@@ -175,9 +175,12 @@ export class Board{
   clearTileUpperRight(tileLocation){
     const x = tileLocation[0];
     const y = tileLocation[1];
-    let tileArray = [[x,y]];
+    let tileArray = [];
+    
+    if(!this.tiles[x][y].isRevealed)
+      tileArray.push([x,y]);
 
-    if(this.tiles[x][y].adjacentMines === 0){
+    if(this.tiles[x][y].adjacentMines === 0 ){
       if(x+1 < this.boardSize) tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
       if(y-1 >= 0) tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
     }
@@ -194,5 +197,16 @@ export class Board{
       if(y+1 < this.boardSize)  tileArray = tileArray.concat(this.clearTileUpperRight([x, y+1]));
     }
     return tileArray;
+  }
+
+  checkforEdge(tileLocation){
+    //check x location
+    if(tileLocation[0] < 0) return true;
+    if(tileLocation[0]+1 > this.boardSize) return true;
+    //check y location
+    if(tileLocation[1] < 0) return true;
+    if(tileLocation[1]+1 > this.boardSize) return true;
+    
+    return false;
   }
 }
