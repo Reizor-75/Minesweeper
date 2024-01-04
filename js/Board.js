@@ -116,6 +116,8 @@ export class Board{
         //mine revealed
         tileEl.innerHTML = `<img src=${this.curAssets[0]} width="100%" height="100%">`;
         tileEl.classList.add("revealedMine"); 
+        let boardAreaEl = document.querySelector(".board-Area");
+        boardAreaEl.style.backgroundColor = "red";
         this.clickedMine = true;
       }
       else{

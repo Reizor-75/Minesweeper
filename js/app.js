@@ -39,7 +39,8 @@ function initGame(){
 
 function resetBoard(){
   resetButtonEl.innerHTML = `<img src=${curAssets[1]} width="20" height="20">`
-  boardAreaEl.innerHTML = ""
+  boardAreaEl.innerHTML = ""  
+  boardAreaEl.style.backgroundColor = "grey";
   initGame();
 }
 
