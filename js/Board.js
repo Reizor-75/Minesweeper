@@ -145,11 +145,12 @@ export class Board{
       const tileLocation = this.getTileLocation(tileId);
       const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
 
-      currentTile.addFlag();   
+      currentTile.toggleFlag();   
 
       if(currentTile.isFlagged) {
         if(this.flagCount >0){
-          tileEl.innerHTML = `<img src="./assets/Images/Flag.png" width=40 height="40">`
+          tileEl.classList.add("flagged");
+          // tileEl.innerHTML = `<img src="./assets/Images/Flag.png" width=40 height="40">`;
           this.flagCount--;
           }
       }
@@ -163,11 +164,10 @@ export class Board{
   }  
 
   clearTiles(tileLocation){
-    let tileArray = [];
     this.clearTileUpperRight(tileLocation);
+    this.clearTileBottomLeft(tileLocation);
     //tileArray = tileArray.concat(this.clearTileUpperRight(tileLocation));
     // tileArray = tileArray.concat(this.clearTileBottomLeft(tileLocation));
-    console.log(tileArray);
   }
   //recursive method to clear all empty adjacent tiles
   clearTileUpperRight(tileLocation){
@@ -187,8 +187,8 @@ export class Board{
       //check to see if clearTileUpperRight return an populated array
       const checkRight = this.clearTileUpperRight([x+1,y]);
       const checkUp = this.clearTileUpperRight([x,y-1]);
-      if(checkRight) this.updateTileDisplay([x+1,y]) //tileArray = tileArray.concat(checkRight);
-      if(checkUp)  this.updateTileDisplay([x,y-1]) //tileArray = tileArray.concat(checkUp);
+      if(checkRight) this.updateTileDisplay([x+1,y]); //tileArray = tileArray.concat(checkRight);
+      if(checkUp)  this.updateTileDisplay([x,y-1]); //tileArray = tileArray.concat(checkUp);
     }
     return tileArray;
   }
@@ -205,6 +205,7 @@ export class Board{
     if(this.tiles[x][y].adjacentMines === 0 ){
       // check to the right then up
       //check to see if clearTileUpperRight return an populated array
+
       if(this.clearTileBottomLeft([x-1,y])) tileArray = tileArray.concat(this.clearTileBottomLeft([x-1,y]));
       if(this.clearTileBottomLeft([x,y+1]))tileArray = tileArray.concat(this.clearTileBottomLeft([x,y+1]));
     }

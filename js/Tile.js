@@ -6,7 +6,7 @@ export class Tile{
     this.adjacentMines = 0;
   }
 
-  addFlag(){
+  toggleFlag(){
     if(!this.isRevealed){
       if(this.isFlagged) this.isFlagged = false;
       else this.isFlagged = true;
