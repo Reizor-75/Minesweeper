@@ -8,7 +8,7 @@ const hardDiff = [24, 99];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b, currentDiff;
+let b, currentDiff, currentTheme, currentAssets;
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
@@ -26,16 +26,19 @@ themesEl.addEventListener ("click", changeTheme)
 
 //default difficulty
 currentDiff = easyDiff;
+currentTheme = "Classic"
 initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
+  currentAssets = asset.changeThemes(currentTheme);
   b = new Board(currentDiff[0],currentDiff[1]);
   // b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl);  
 }
 
 function resetBoard(){      
-  resetButtonEl.innerHTML = `<img src="./assets/Images/Smiley.png" width="20" height="20">`
+  console.log(asset);
+  resetButtonEl.innerHTML = `<img src=${currentAssets[1]} width="20" height="20">`
   boardAreaEl.innerHTML = ""
   initGame();
 }
@@ -59,7 +62,8 @@ function changeDifficulty(evt){
 }
 
 function changeTheme(evt){
-  const newTheme = evt.target.id;
+  currentTheme = evt.target.id;
+  resetBoard();
 }
 
 function checkForWin(tileCount){
