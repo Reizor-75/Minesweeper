@@ -32,6 +32,8 @@ initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
   curAssets = asset.changeThemes(curTheme);
+  if(curTheme === "Zelda") boardAreaEl.classList.add("zelda");
+  else  boardAreaEl.classList.remove("zelda");
   b = new Board(currentDiff[0], currentDiff[1], curAssets);
   // b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);  
@@ -40,7 +42,7 @@ function initGame(){
 function resetBoard(){
   resetButtonEl.innerHTML = `<img src=${curAssets[1]} width="20" height="20">`
   boardAreaEl.innerHTML = ""  
-  boardAreaEl.style.backgroundColor = "grey";
+  boardAreaEl.style.backgroundColor = "";
   initGame();
 }
 
