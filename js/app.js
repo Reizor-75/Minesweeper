@@ -11,6 +11,7 @@ const hardDiff = [24, 99, "hard"];
 let b, currentDiff, curTheme, curAssets;
 
 /*------------------------ Cached Element References ------------------------*/
+const activeWinEl = document.querySelector(".active-Window");
 const boardAreaEl = document.querySelector(".board-Area");
 const resetButtonEl = document.querySelector("#reset-Button");
 const TimerEl = document.querySelector("#timer");
@@ -32,8 +33,8 @@ initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){    
   curAssets = asset.changeThemes(curTheme);
-  if(curTheme === "Zelda") boardAreaEl.classList.add("zelda");
-  else  boardAreaEl.classList.remove("zelda");
+  if(curTheme === "Zelda") activeWinEl.classList.add("zelda");
+  else activeWinEl.classList.remove("zelda");
 
   b = new Board(currentDiff[0], currentDiff[1], curAssets);
   b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);
@@ -45,6 +46,7 @@ function resetBoard(){
   boardAreaEl.style.backgroundColor = "";
   initGame();
 }
+
 function resetButtonDisplay(){  
   resetButtonEl.style.backgroundImage = `url("${curAssets[1]}")`;
   resetButtonEl.style.backgroundSize = `100%`;
