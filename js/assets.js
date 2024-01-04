@@ -26,7 +26,7 @@ function changeThemes(theme){
     looseImage = "./assets/Images/Frowny.png";
     winImage = "./assets/Images/Smiley-sunglasses.png";
     flagImage = "./assets/Images/Flag.png";
-    clearImage = "";
+    clearImage = "./assets/Images/Blank.png";
 
   }
 

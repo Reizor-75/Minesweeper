@@ -15,7 +15,6 @@ export class Board{
   }
 
   initBoard(TimerEl, boardAreaEl, difficulty){   
-    
     this.updateFlagCounter();
     TimerEl.innerHTML = `000`;
 
@@ -28,7 +27,7 @@ export class Board{
         const tileEl = document.createElement("div");
         tileEl.className = `tile`;
         tileEl.classList.add(difficulty);
-        console.log(tileEl);
+        // console.log(tileEl);
         tileEl.id = `X${i}Y${j}`
         tileEl.innerHTML = ` `;
         rowEl.appendChild(tileEl);
@@ -122,8 +121,12 @@ export class Board{
       }
       else{
         //tile revealed
+        tileEl.style.backgroundImage = `url("${this.curAssets[5]}")`;
+        tileEl.style.backgroundSize = `100%`;
+        console.dir(this.curAssets[5]);
+        console.dir(tileEl);
         if(currentTile.adjacentMines != 0){
-          //non-empty tile
+          //non-empty tile            
           this.updatefontColor(currentTile.adjacentMines, tileEl);
           tileEl.textContent = currentTile.adjacentMines;
         }
@@ -132,6 +135,7 @@ export class Board{
         //reveal tile 
         currentTile.revealTile();
         tileEl.classList.add("revealed");
+        //
         console.log(`${tileLocation[0]} ${tileLocation[1]}, removed `);
         this.tileCount--;
         //add cleared image if there is a clear image
