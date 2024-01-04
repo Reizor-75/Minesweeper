@@ -2,9 +2,9 @@ import {Board} from "./Board.js";
 import * as asset from "./assets.js";
 
 /*-------------------------------- Constants --------------------------------*/
-const easyDiff = [9, 10];
-const mediumDiff = [16, 40];
-const hardDiff = [24, 99];
+const easyDiff = [9, 10, "easy"];
+const mediumDiff = [16, 40, "medium"];
+const hardDiff = [24, 99, "hard"];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -34,7 +34,7 @@ function initGame(){
   curAssets = asset.changeThemes(curTheme);
   b = new Board(currentDiff[0], currentDiff[1], curAssets);
   // b = new Board(5,3);
-  b.initBoard(TimerEl, boardAreaEl);  
+  b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);  
 }
 
 function resetBoard(){

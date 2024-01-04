@@ -14,7 +14,7 @@ export class Board{
     this.flagCount = this.mineCount;
   }
 
-  initBoard(TimerEl, boardAreaEl){   
+  initBoard(TimerEl, boardAreaEl, difficulty){   
     
     this.updateFlagCounter();
     TimerEl.innerHTML = `000`;
@@ -27,6 +27,8 @@ export class Board{
       for(let j = 0; j < this.boardSize; j++){
         const tileEl = document.createElement("div");
         tileEl.className = `tile`;
+        tileEl.classList.add(difficulty);
+        console.log(tileEl);
         tileEl.id = `X${i}Y${j}`
         tileEl.innerHTML = ` `;
         rowEl.appendChild(tileEl);
@@ -79,7 +81,7 @@ export class Board{
   //reveals tiles
   handleLeftClick(evt){
     if(this.clickedMine) return;
-    if(evt.target.className === "tile"){      
+    if(evt.target.classList.contains("tile")){      
       const tileId = evt.target.id;
       const tileLocation = this.getTileLocation(tileId);
       
@@ -112,7 +114,7 @@ export class Board{
       //not flagged
       if(currentTile.containsMine){
         //mine revealed
-        tileEl.innerHTML = `<img src=${this.curAssets[0]} width="40" height="40">`;
+        tileEl.innerHTML = `<img src=${this.curAssets[0]} width="100%" height="100%">`;
         tileEl.classList.add("revealedMine"); 
         this.clickedMine = true;
       }
@@ -165,7 +167,7 @@ export class Board{
       if(currentTile.isFlagged) {
         if(this.flagCount >0){
           tileEl.classList.add("flagged");
-          // tileEl.innerHTML = `<img src="${curAssets[4]}" width=40 height="40">`;
+          // tileEl.innerHTML = `<img src="${curAssets[4]}" width=100% height="100%">`;
           this.flagCount--;
           }
       }

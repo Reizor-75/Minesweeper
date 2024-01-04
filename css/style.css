@@ -2,19 +2,24 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: cornflowerblue;
+  background-color: black;
   font-family: 'Press Start 2P';
+  padding:10px;
 }
-
-h1{
-  display: flex;
-  justify-content: center;
+.title{
+  display: flex;  
+  align-items: center;
+  color: white;
   background: linear-gradient(0.25turn, blue, lightblue);
   padding:10px
+}
+.icon{
+  padding:0px 5px;
 }
 
 section{
   display: flex;
+  display: row;
   justify-content: center;
 }
 
@@ -27,7 +32,7 @@ section{
   background-color: rgb(25, 25, 25);
   width: 20%;
   padding:16px;
-  margin: 0 0 8px 0;
+  /* margin: 0 0 8px 0; */
 }
 
 #difficulty-menu{
@@ -51,7 +56,7 @@ section{
   background-color: grey;
   /* border: inset 20px grey; */
   width: 80%;
-  margin: 0 0 0 8px;
+  /* margin: 0 0 0 8px; */
 }
 
 .board-Header{  
@@ -59,7 +64,11 @@ section{
   justify-content: center;
   align-items: center;
   padding: 10px 0px;
+  border: solid 10px lightgrey;
+  border-bottom: none;;
   /* border: inset 20px lightgrey; */
+  box-shadow: inset -.1em -.1em dimgray, inset .1em .1em white;
+
 }
 
 #flag-Counter{
@@ -94,8 +103,7 @@ section{
 .board-Area{
   display: flex;
   justify-content: center;
-  background-color: lightgrey;  
-  /* border: inset 10px lightgrey; */
+  border: solid 10px lightgrey;
   padding: 20px;
 }
 
@@ -104,12 +112,25 @@ section{
   justify-content: center;
   align-items: center;
   background-color: lightgray;
-  width: 40px;
-  height: 40px;
   border: solid 1px;
   border-color: grey;
   font-size: 32px;
-  box-shadow: inset -.05em -.05em dimgray, inset .05em .05em white;
+  box-shadow: inset -.1em -.1em dimgray, inset .1em .1em white;
+}
+.easy{
+  width: 40px;
+  height: 40px;
+  font-size: 32px;
+}
+.medium{
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+}
+.hard{
+  width: 25px;
+  height: 25px;  
+  font-size: 16px;
 }
 
 .revealed{  
