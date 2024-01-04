@@ -28,7 +28,8 @@ retro theme: A link to the Past.
 
 
 ## Ice Box 🧊
-- [ ] Fix Flag Display
+- [x] Fix Flag Display
+- [x] Add revealed tile Image
 - [x] Add Confetti
 - [x] Switch difficulties (Easy, Medium, Hard)
 - [x] Switch Themes (Retro MineSweeper, A Link to the past)

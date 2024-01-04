@@ -172,13 +172,14 @@ export class Board{
 
       if(currentTile.isFlagged) {
         if(this.flagCount >0){
-          tileEl.classList.add("flagged");
-          // tileEl.innerHTML = `<img src="${curAssets[4]}" width=100% height="100%">`;
+          // tileEl.classList.add("flagged");          
+          tileEl.style.backgroundImage = `url("${this.curAssets[4]}")`;
+          tileEl.style.backgroundSize = `100%`;
           this.flagCount--;
           }
       }
       else {
-        tileEl.classList.remove("flagged");
+        tileEl.style.backgroundImage = ``;
         this.flagCount++;
       }
       this.updateFlagCounter();
