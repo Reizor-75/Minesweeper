@@ -8,13 +8,12 @@ const hardDiff = [24, 99, "hard"];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b, currentDiff, curTheme, curAssets;
+let board, currentDiff, curTheme, curAssets, seconds, timerIntervalID;
 
 /*------------------------ Cached Element References ------------------------*/
 const activeWinEl = document.querySelector(".active-Window");
 const boardAreaEl = document.querySelector(".board-Area");
 const resetButtonEl = document.querySelector("#reset-Button");
-const TimerEl = document.querySelector("#timer");
 const diffEl = document.querySelector("#difficulty-menu");
 const themesEl = document.querySelector(".themesSection");
 
@@ -32,13 +31,15 @@ initGame();
 
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){    
+  seconds = 0;
   curAssets = asset.changeThemes(curTheme);
   if(curTheme === "Zelda") activeWinEl.classList.add("zelda");
   else activeWinEl.classList.remove("zelda");
 
-  b = new Board(currentDiff[0], currentDiff[1], curAssets);
-  b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);
+  board= new Board(currentDiff[0], currentDiff[1], curAssets);
+  board.initBoard(boardAreaEl, currentDiff[2]);
   updateResetButton(curAssets[1]);
+  startTimer();
 }
 
 function resetBoard(){  
@@ -48,13 +49,13 @@ function resetBoard(){
 }
 
 function leftClick(evt){
-  b.handleLeftClick(evt);
-  checkMineClicked(b.clickedMine);
-  checkForWin(b.tileCount);
+  board.handleLeftClick(evt);
+  checkMineClicked(board.clickedMine);
+  checkForWin(board.tileCount);
 }
 
 function rightClick(evt){
-  b.handleRightClick(evt);
+  board.handleRightClick(evt);
 }
 
 function changeDifficulty(evt){
@@ -78,11 +79,33 @@ function checkForWin(tileCount){
 
 function checkMineClicked(clicked){
   if(clicked){
-    updateResetButton(curAssets[2]);
+    updateResetButton(curAssets[2]);    
+    clearInterval(timerIntervalID)
   }
 }
 
 function updateResetButton(curAsset){  
   resetButtonEl.style.backgroundImage = `url("${curAsset}")`;
   resetButtonEl.style.backgroundSize = `100%`;
+}
+
+function startTimer(){
+  if(timerIntervalID){
+    seconds = 0;
+    clearInterval(timerIntervalID);
+  } 
+  updateTimerDisplay();
+  timerIntervalID = setInterval(tick, 1000);
+}
+
+function tick(){
+  seconds++;    
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay(){	
+  const timerEl = document.querySelector("#timer");
+  if(seconds < 10) timerEl.textContent = `00${seconds}`;
+  else if(seconds < 100) timerEl.textContent = `0${seconds}`;
+  else if(seconds > 999) timerEl.textContent = `ERR`;
 }

@@ -12,12 +12,10 @@ export class Board{
     this.curAssets = currentAssets;
     this.tiles = [];    
     this.flagCount = this.mineCount;
-    this.timerIntervalID;
   }
 
-  initBoard(TimerEl, boardAreaEl, difficulty){   
+  initBoard(boardAreaEl, difficulty){   
     this.updateFlagCounter();
-    TimerEl.innerHTML = `000`;
 
     for(let i = 0; i < this.boardSize; i++){
       let row = [];
@@ -37,7 +35,6 @@ export class Board{
       boardAreaEl.appendChild(rowEl);
       this.tiles.push(row);
     }
-
   }
 
   placeMines(x,y){
@@ -249,9 +246,9 @@ export class Board{
     return adjacentLocations;
   }
 
-  checkRemainngTiles(){
+  checkRemaingTiles(){
     let unrevealedTilesCount = 0;
 
     return;
-  }
+  }  
 }
