@@ -3,7 +3,7 @@ let smileyImage;
 let looseImage;
 let winImage;
 let flagImage;
-let clearTile;
+let clearImage;
 
 function changeThemes(theme){
   const asset = [];
@@ -17,7 +17,7 @@ function changeThemes(theme){
     looseImage = "./assets/Images/Empty-Heart.png";
     winImage = "./assets/Images/Full-Heart.png";
     flagImage = "./assets/Images/stone.png";
-    clearTile = "./assets/Images/hole.png";
+    clearImage = "./assets/Images/hole.png";
   }
   else{
     //clasic minesweeper
@@ -26,7 +26,7 @@ function changeThemes(theme){
     looseImage = "./assets/Images/Frowny.png";
     winImage = "./assets/Images/Smiley-sunglasses.png";
     flagImage = "./assets/Images/Flag.png";
-    clearTile = "";
+    clearImage = "";
 
   }
 
@@ -35,6 +35,7 @@ function changeThemes(theme){
     asset.push(looseImage);
     asset.push(winImage);
     asset.push(flagImage);
+    asset.push(clearImage);
   return asset;
 }
 

@@ -8,7 +8,7 @@ const hardDiff = [24, 99];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b, currentDiff, currentTheme, currentAssets;
+let b, currentDiff, curTheme, curAssets;
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
@@ -24,21 +24,21 @@ boardAreaEl.addEventListener("contextmenu", rightClick);
 diffEl.addEventListener ("change",changeDifficulty);
 themesEl.addEventListener ("click", changeTheme)
 
-//default difficulty
+//default game set up
 currentDiff = easyDiff;
-currentTheme = "Classic"
+curTheme = "Classic"
 initGame();
+
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
-  currentAssets = asset.changeThemes(currentTheme);
-  b = new Board(currentDiff[0],currentDiff[1]);
+  curAssets = asset.changeThemes(curTheme);
+  b = new Board(currentDiff[0],currentDiff[1], curAssets);
   // b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl);  
 }
 
-function resetBoard(){      
-  console.log(asset);
-  resetButtonEl.innerHTML = `<img src=${currentAssets[1]} width="20" height="20">`
+function resetBoard(){
+  resetButtonEl.innerHTML = `<img src=${curAssets[1]} width="20" height="20">`
   boardAreaEl.innerHTML = ""
   initGame();
 }
@@ -62,20 +62,18 @@ function changeDifficulty(evt){
 }
 
 function changeTheme(evt){
-  currentTheme = evt.target.id;
+  curTheme = evt.target.id;
   resetBoard();
 }
 
 function checkForWin(tileCount){
   if(tileCount === 0){
-    resetButtonEl.innerHTML = `<img src="./assets/Images/Smiley-sunglasses.png" width="20" height="20">`
-    console.log("winner");
+    resetButtonEl.innerHTML = `<img src=${curAssets[3]} width="20" height="20">`
   }
 }
 
 function checkMineClicked(clicked){
   if(clicked){
-    resetButtonEl.innerHTML = `<img src="./assets/Images/frowny.png" width="20" height="20">`
-    console.log("looser");
+    resetButtonEl.innerHTML = `<img src=${curAssets[2]} width="20" height="20">`
   }
 }

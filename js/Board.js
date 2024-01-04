@@ -3,11 +3,13 @@ import {Tile} from "./Tile.js";
 
 export class Board{
 
-  constructor(boardSize, mineCount){
+  constructor(boardSize, mineCount, currentAssets){
     this.mineCount = mineCount;
     this.boardSize = boardSize;
     this.tileCount =  boardSize*boardSize - mineCount;
     this.clickedMine = false;
+    this.firstClick = true;
+    this.curAssets = currentAssets
   }
 
   initBoard(TimerEl, boardAreaEl){   
@@ -33,17 +35,17 @@ export class Board{
       boardAreaEl.appendChild(rowEl);
       this.tiles.push(row);
     }
-    this.placeMines();
+
   }
 
-  placeMines(){
+  placeMines(x,y){
     let remainingMines = this.mineCount;
     this.mineLocations = [];
 
     while(remainingMines > 0){
       const randomX = Math.floor(Math.random() * this.boardSize);
       const randomY = Math.floor(Math.random() * this.boardSize);
-
+      if(x === randomX && y === randomY) continue;
       if(!this.tiles[randomX][randomY].containsMine){
         this.tiles[randomX][randomY].containsMine = true;
         this.mineLocations.push([randomX , randomY]);
@@ -51,22 +53,19 @@ export class Board{
         this.adjustAdjacentMines(randomX,randomY);
       }
     }
-    console.log(this.mineLocations);
+    console.log(this.mineLocations)
   }
 
   adjustAdjacentMines(x, y){
     // left side
     if(x-1 >= 0){
       this.tiles[x-1][y].adjacentMines++;
-
       if(y-1 >= 0) this.tiles[x-1][y-1].adjacentMines++;
       if(y+1 < this.boardSize) this.tiles[x-1][y+1].adjacentMines++;
     }
     //right coloum
     if(x+1 < this.boardSize){
-      // console.log(this.tiles[x+1][y]);
       this.tiles[x+1][y].adjacentMines++;
-
       if(y-1 >= 0) this.tiles[x+1][y-1].adjacentMines++;
       if(y+1 < this.boardSize) this.tiles[x+1][y+1].adjacentMines++;
     }
@@ -77,10 +76,18 @@ export class Board{
 
   //reveals tiles
   handleLeftClick(evt){
+  
     if(this.clickedMine) return;
-    if(evt.target.className === "tile"){
+    if(evt.target.className === "tile"){      
       const tileId = evt.target.id;
       const tileLocation = this.getTileLocation(tileId);
+      //check for first click
+        //place mines avoid current location
+      if(this.firstClick) {
+        this.placeMines(tileLocation[0],tileLocation[1]);
+        this.firstClick = false;
+      }
+
       this.updateTileDisplay(tileLocation);
     }
 
@@ -103,7 +110,7 @@ export class Board{
       //not flagged
       if(currentTile.containsMine){
         //mine revealed
-        tileEl.innerHTML = `<img src="./assets/Images/Mine.png" width="40" height="40">`;
+        tileEl.innerHTML = `<img src=${this.curAssets[0]} width="40" height="40">`;
         tileEl.classList.add("revealedMine"); 
         this.clickedMine = true;
       }
