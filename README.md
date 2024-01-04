@@ -34,6 +34,7 @@ retro theme: A link to the Past.
 - [x] Add Confetti
 - [x] Switch difficulties (Easy, Medium, Hard)
 - [x] Switch Themes (Retro MineSweeper, A Link to the past)
+- [ ] Add Timer
 - [ ] Add a Space Invaders Theme
 - [ ] Add Best Time Tracker
 - [ ] Add Leader Board
