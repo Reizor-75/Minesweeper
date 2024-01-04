@@ -36,7 +36,8 @@ function initGame(){
   if(curTheme === "Zelda") activeWinEl.classList.add("zelda");
   else activeWinEl.classList.remove("zelda");
 
-  board= new Board(currentDiff[0], currentDiff[1], curAssets);
+  // board= new Board(currentDiff[0], currentDiff[1], curAssets);
+  board = new Board(5,3,curAssets);
   board.initBoard(boardAreaEl, currentDiff[2]);
   updateResetButton(curAssets[1]);
   startTimer();

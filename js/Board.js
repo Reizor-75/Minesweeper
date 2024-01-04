@@ -121,6 +121,7 @@ export class Board{
       }
       else{
         //tile revealed
+        this.tileCount--;
         tileEl.style.backgroundImage = `url("${this.curAssets[5]}")`;
         tileEl.style.backgroundSize = `100%`;
         if(currentTile.adjacentMines != 0){
@@ -133,8 +134,6 @@ export class Board{
         //reveal tile 
         currentTile.revealTile();
         tileEl.classList.add("revealed");
-        //
-        this.tileCount--;
         //add cleared image if there is a clear image
       }
     }
@@ -186,7 +185,9 @@ export class Board{
 
   //recursive method to clear all empty adjacent tiles
   clearTiles(tileLocation){
-    if(this.checkforEdge(tileLocation)) return;
+    const adjacentLocales = this.getAdjacentLocations(tileLocation);
+    if(adjacentLocales.length === 0) return;
+
     const x = tileLocation[0];
     const y = tileLocation[1];
 
@@ -197,37 +198,17 @@ export class Board{
     this.tiles[x][y].revealTile();
     this.updateTileDisplay([x,y]); 
 
-    if(this.tiles[x][y].adjacentMines === 0 ){
-      // check all four cardinal directions
-      this.clearTiles([x+1,y]);
-      this.clearTiles([x,y-1]);
-      this.clearTiles([x-1,y]);
-      this.clearTiles([x,y+1]);
-      
-      //checks corners
-      this.clearTiles([x+1,y-1]);
-      this.clearTiles([x+1,y+1]);
-      this.clearTiles([x-1,y-1]);
-      this.clearTiles([x-1,y+1]);
-    }
+    adjacentLocales.forEach((locale)=>{
+      if(this.tiles[x][y].adjacentMines === 0 )this.clearTiles(locale);
+    });
   }//recursive method to clear all empty adjacent tiles
-
-  checkforEdge(tileLocation){
-    //check x location
-    if(tileLocation[0] < 0) return true;
-    if(tileLocation[0]+1 > this.boardSize) return true;
-    //check y location
-    if(tileLocation[1] < 0) return true;
-    if(tileLocation[1]+1 > this.boardSize) return true;
-    
-    return false;
-  }
 
   getAdjacentLocations(tileLocation){
     const x = tileLocation[0];
     const y = tileLocation[1];
     const adjacentLocations = [];
 
+    //locations not on the edge
     if(x-1 >= 0){
       adjacentLocations.push([x-1, y]);
       if(y-1 >= 0) adjacentLocations.push([x-1, y-1]);
