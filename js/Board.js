@@ -97,7 +97,8 @@ export class Board{
     const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
     if(!currentTile.isFlagged){
       //not flagged
-      this.revealTile(currentTile,tileEl);
+      currentTile.revealTile();
+      tileEl.classList.add("revealed");
       if(currentTile.containsMine){
         //mine revealed
         tileEl.innerHTML = `<img src="./assets/Images/Mine.png" width="40" height="40">`;
@@ -160,11 +161,6 @@ export class Board{
     }
   }  
 
-  revealTile(currentTile,tileEl){
-    currentTile.revealTile();
-    tileEl.classList.add("revealed");
-  }
-
   clearTiles(tileLocation){
     let tileArray = [];
     tileArray = tileArray.concat(this.clearTileUpperRight(tileLocation));
@@ -175,10 +171,8 @@ export class Board{
   clearTileUpperRight(tileLocation){
     const x = tileLocation[0];
     const y = tileLocation[1];
-    let tileArray = [];
-    
-    if(!this.tiles[x][y].isRevealed)
-      tileArray.push([x,y]);
+
+    let tileArray = [[x,y]];
 
     if(this.tiles[x][y].adjacentMines === 0 ){
       if(x+1 < this.boardSize) tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
