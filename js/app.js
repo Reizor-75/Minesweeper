@@ -7,7 +7,7 @@ const hardDiff = [24, 99];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let b, currentDiff, mineClicked, tileCount; 
+let b, currentDiff;
 
 /*------------------------ Cached Element References ------------------------*/
 const boardAreaEl = document.querySelector(".board-Area");
@@ -28,21 +28,22 @@ currentDiff = easyDiff;
 initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
-  tileCount = currentDiff[0]*currentDiff[0] - currentDiff[1];
-  mineClicked = false;
-  b = new Board(currentDiff[0],currentDiff[1]);
-  // b = new Board(5,3);
+  // b = new Board(currentDiff[0],currentDiff[1]);
+  b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl);  
 }
 
-function resetBoard(){    
+function resetBoard(){      
+  resetButtonEl.innerHTML = `<img src="./assets/Images/Smiley.png" width="20" height="20">`
   boardAreaEl.innerHTML = ""
   initGame();
 }
 
 function leftClick(evt){
   b.handleLeftClick(evt);
-  checkForWin();
+  checkMineClicked(b.clickedMine);
+  checkForWin(b.tileCount);
+  
 }
 
 function rightClick(evt){
@@ -61,8 +62,16 @@ function changeTheme(evt){
   console.log(evt.target.id);
 }
 
-function checkForWin(){
+function checkForWin(tileCount){
   if(tileCount === 0){
+    resetButtonEl.innerHTML = `<img src="./assets/Images/Smiley-sunglasses.png" width="20" height="20">`
     console.log("winner");
+  }
+}
+
+function checkMineClicked(clicked){
+  if(clicked){
+    resetButtonEl.innerHTML = `<img src="./assets/Images/frowny.png" width="20" height="20">`
+    console.log("looser");
   }
 }

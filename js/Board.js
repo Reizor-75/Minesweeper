@@ -6,6 +6,8 @@ export class Board{
   constructor(boardSize, mineCount){
     this.mineCount = mineCount;
     this.boardSize = boardSize;
+    this.tileCount =  boardSize*boardSize - mineCount;
+    this.clickedMine = false;
   }
 
   initBoard(TimerEl, boardAreaEl){   
@@ -75,11 +77,13 @@ export class Board{
 
   //reveals tiles
   handleLeftClick(evt){
+    if(this.clickedMine) return;
     if(evt.target.className === "tile"){
       const tileId = evt.target.id;
       const tileLocation = this.getTileLocation(tileId);
       this.updateTileDisplay(tileLocation);
     }
+
   }
 
   getTileLocation(tileId){
@@ -100,7 +104,8 @@ export class Board{
       if(currentTile.containsMine){
         //mine revealed
         tileEl.innerHTML = `<img src="./assets/Images/Mine.png" width="40" height="40">`;
-        tileEl.classList.add("revealedMine");        
+        tileEl.classList.add("revealedMine"); 
+        this.clickedMine = true;
       }
       else{
         //tile revealed
@@ -116,6 +121,7 @@ export class Board{
         //reveal tile 
         currentTile.revealTile();
         tileEl.classList.add("revealed");
+        this.tileCount--;
       }
     }
   }
