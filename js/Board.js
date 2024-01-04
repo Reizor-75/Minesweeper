@@ -188,7 +188,7 @@ export class Board{
       this.clearTiles([x,y-1]);
       this.clearTiles([x-1,y]);
       this.clearTiles([x,y+1]);
-
+      
       //checks corners
       this.clearTiles([x+1,y-1]);
       this.clearTiles([x+1,y+1]);
