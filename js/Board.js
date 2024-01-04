@@ -213,7 +213,7 @@ export class Board{
       this.clearTiles([x-1,y-1]);
       this.clearTiles([x-1,y+1]);
     }
-  }
+  }//recursive method to clear all empty adjacent tiles
 
   checkforEdge(tileLocation){
     //check x location

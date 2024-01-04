@@ -17,7 +17,7 @@ retro theme: A link to the Past.
 - Players can toggle the theme by clicking on one of the theme icons
 
 ## [Play RetroSweeper Here](https://michellelinares-minesweeper.netlify.app/) 🎮
-
+## [Planning materials](https://docs.google.com/document/d/1gpfvfx2IHLGcGZ3drg1CmWVeihv6vaf5uGW5AC-dkVk/edit) 🗒
 ## Technologies used 🖥
 - CSS
 - JavaScript
