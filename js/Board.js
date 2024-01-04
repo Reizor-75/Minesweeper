@@ -252,6 +252,6 @@ export class Board{
   checkRemainngTiles(){
     let unrevealedTilesCount = 0;
 
-    return
+    return;
   }
 }

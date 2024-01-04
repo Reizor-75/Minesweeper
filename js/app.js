@@ -38,18 +38,13 @@ function initGame(){
 
   b = new Board(currentDiff[0], currentDiff[1], curAssets);
   b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);
-  resetButtonDisplay();  
+  updateResetButton(curAssets[1]);
 }
 
 function resetBoard(){  
   boardAreaEl.innerHTML = ""  
   activeWinEl.style.backgroundColor = "";
   initGame();
-}
-
-function resetButtonDisplay(){  
-  resetButtonEl.style.backgroundImage = `url("${curAssets[1]}")`;
-  resetButtonEl.style.backgroundSize = `100%`;
 }
 
 function leftClick(evt){
@@ -76,15 +71,18 @@ function changeTheme(evt){
 
 function checkForWin(tileCount){
   if(tileCount === 0){    
-    confetti.start(2000);
-    resetButtonEl.style.backgroundImage = `url("${curAssets[3]}")`;
-    resetButtonEl.style.backgroundSize = `100%`;
+    confetti.start(2000);    
+    updateResetButton(curAssets[3]);
   }
 }
 
 function checkMineClicked(clicked){
   if(clicked){
-    resetButtonEl.style.backgroundImage = `url("${curAssets[2]}")`;
-    resetButtonEl.style.backgroundSize = `100%`;
+    updateResetButton(curAssets[2]);
   }
+}
+
+function updateResetButton(curAsset){  
+  resetButtonEl.style.backgroundImage = `url("${curAsset}")`;
+  resetButtonEl.style.backgroundSize = `100%`;
 }
