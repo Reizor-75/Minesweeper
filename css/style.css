@@ -90,6 +90,8 @@ section{
 #reset-Button{
   background-color: lightgrey;
   border: outset white;
+  width: 30px;
+  height: 30px;
 }
 
 #timer{  

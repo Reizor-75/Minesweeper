@@ -114,8 +114,9 @@ export class Board{
       //not flagged
       if(currentTile.containsMine){
         //mine revealed
-        tileEl.innerHTML = `<img src=${this.curAssets[0]} width="100%" height="100%">`;
         tileEl.classList.add("revealedMine"); 
+        tileEl.style.backgroundImage = `url("${this.curAssets[0]}")`;
+        tileEl.style.backgroundSize = `100%`;
         let boardAreaEl = document.querySelector(".board-Area");
         boardAreaEl.style.backgroundColor = "red";
         this.clickedMine = true;

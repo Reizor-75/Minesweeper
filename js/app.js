@@ -30,20 +30,24 @@ curTheme = "Classic"
 initGame();
 
 /*-------------------------------- Functions --------------------------------*/
-function initGame(){
+function initGame(){    
   curAssets = asset.changeThemes(curTheme);
   if(curTheme === "Zelda") boardAreaEl.classList.add("zelda");
   else  boardAreaEl.classList.remove("zelda");
+
   b = new Board(currentDiff[0], currentDiff[1], curAssets);
-  // b = new Board(5,3);
-  b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);  
+  b.initBoard(TimerEl, boardAreaEl, currentDiff[2]);
+  resetButtonDisplay();  
 }
 
-function resetBoard(){
-  resetButtonEl.innerHTML = `<img src=${curAssets[1]} width="20" height="20">`
+function resetBoard(){  
   boardAreaEl.innerHTML = ""  
   boardAreaEl.style.backgroundColor = "";
   initGame();
+}
+function resetButtonDisplay(){  
+  resetButtonEl.style.backgroundImage = `url("${curAssets[1]}")`;
+  resetButtonEl.style.backgroundSize = `100%`;
 }
 
 function leftClick(evt){
@@ -70,15 +74,16 @@ function changeTheme(evt){
 }
 
 function checkForWin(tileCount){
-  console.log(tileCount);
   if(tileCount === 0){    
     confetti.start(2000);
-    resetButtonEl.innerHTML = `<img src=${curAssets[3]} width="20" height="20">`
+    resetButtonEl.style.backgroundImage = `url("${curAssets[3]}")`;
+    resetButtonEl.style.backgroundSize = `100%`;
   }
 }
 
 function checkMineClicked(clicked){
   if(clicked){
-    resetButtonEl.innerHTML = `<img src=${curAssets[2]} width="20" height="20">`
+    resetButtonEl.style.backgroundImage = `url("${curAssets[2]}")`;
+    resetButtonEl.style.backgroundSize = `100%`;
   }
 }
