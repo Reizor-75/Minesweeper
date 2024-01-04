@@ -177,8 +177,9 @@ export class Board{
 
     if(this.tiles[x][y].adjacentMines === 0 ){
       // check to the right then up
-      tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
-      tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
+      //check to see if clearTileUpperRight return an populated array
+      if(this.clearTileUpperRight([x+1,y])) tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
+      if(this.clearTileUpperRight([x,y-1]))tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
     }
     return tileArray;
   }
