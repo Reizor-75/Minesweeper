@@ -1,6 +1,6 @@
 # RetroSweeper
-Unit 1 Project: Web based Minesweeper Game
 
+![MineSweeper](./assets/Images/MineSweeper-ScreenShot.png)
 
 This is a recreation of the classic Windows 98 version of MineSweeper with an additional
 retro theme: A link to the Past.

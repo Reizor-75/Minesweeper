@@ -12,6 +12,7 @@ export class Board{
     this.curAssets = currentAssets;
     this.tiles = [];    
     this.flagCount = this.mineCount;
+    this.timerIntervalID;
   }
 
   initBoard(TimerEl, boardAreaEl, difficulty){   
@@ -168,7 +169,7 @@ export class Board{
       const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
 
       if(currentTile.isRevealed) return;
-      
+
       currentTile.toggleFlag();   
 
       if(currentTile.isFlagged) {
