@@ -8,7 +8,7 @@ const hardDiff = [24, 99, "hard"];
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board, currentDiff, curTheme, curAssets, seconds, timerIntervalID;
+let board, currentDiff, curTheme, curAssets, seconds = 0, timerIntervalID;
 
 /*------------------------ Cached Element References ------------------------*/
 const activeWinEl = document.querySelector(".active-Window");
@@ -30,8 +30,7 @@ curTheme = "Classic"
 initGame();
 
 /*-------------------------------- Functions --------------------------------*/
-function initGame(){    
-  seconds = 0;
+function initGame(){
   curAssets = asset.changeThemes(curTheme);
   if(curTheme === "Zelda") activeWinEl.classList.add("zelda");
   else activeWinEl.classList.remove("zelda");
@@ -75,6 +74,7 @@ function checkForWin(tileCount){
   if(tileCount === 0){    
     confetti.start(2000);    
     updateResetButton(curAssets[3]);
+    clearInterval(timerIntervalID)
   }
 }
 
@@ -92,7 +92,6 @@ function updateResetButton(curAsset){
 
 function startTimer(){
   if(timerIntervalID){
-    seconds = 0;
     clearInterval(timerIntervalID);
   } 
   updateTimerDisplay();
@@ -106,7 +105,8 @@ function tick(){
 
 function updateTimerDisplay(){	
   const timerEl = document.querySelector("#timer");
-  if(seconds < 10) timerEl.textContent = `00${seconds}`;
-  else if(seconds < 100) timerEl.textContent = `0${seconds}`;
-  else if(seconds > 999) timerEl.textContent = `ERR`;
+  if(seconds > 999) timerEl.textContent = `ERR`;
+  else if(seconds > 99) timerEl.textContent = `${seconds}`;
+  else if(seconds > 9) timerEl.textContent = `0${seconds}`;
+  else timerEl.textContent = `00${seconds}`;
 }
