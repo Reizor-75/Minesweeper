@@ -9,12 +9,13 @@ export class Board{
     this.tileCount =  boardSize*boardSize - mineCount;
     this.clickedMine = false;
     this.firstClick = true;
-    this.curAssets = currentAssets
+    this.curAssets = currentAssets;
+    this.tiles = [];    
+    this.flagCount = this.mineCount;
   }
 
   initBoard(TimerEl, boardAreaEl){   
-    this.tiles = [];    
-    this.flagCount = this.mineCount;
+    
     this.updateFlagCounter();
     TimerEl.innerHTML = `000`;
 
@@ -106,6 +107,7 @@ export class Board{
   updateTileDisplay(tileLocation){
     const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
     const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
+
     if(!currentTile.isFlagged){
       //not flagged
       if(currentTile.containsMine){
@@ -126,6 +128,7 @@ export class Board{
         //reveal tile 
         currentTile.revealTile();
         tileEl.classList.add("revealed");
+        console.log(`${tileLocation[0]} ${tileLocation[1]}, removed `);
         this.tileCount--;
         //add cleared image if there is a clear image
       }

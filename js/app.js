@@ -32,7 +32,7 @@ initGame();
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
   curAssets = asset.changeThemes(curTheme);
-  b = new Board(currentDiff[0],currentDiff[1], curAssets);
+  b = new Board(currentDiff[0], currentDiff[1], curAssets);
   // b = new Board(5,3);
   b.initBoard(TimerEl, boardAreaEl);  
 }
@@ -68,7 +68,8 @@ function changeTheme(evt){
 
 function checkForWin(tileCount){
   console.log(tileCount);
-  if(tileCount === 0){
+  if(tileCount === 0){    
+    confetti.start(2000);
     resetButtonEl.innerHTML = `<img src=${curAssets[3]} width="20" height="20">`
   }
 }

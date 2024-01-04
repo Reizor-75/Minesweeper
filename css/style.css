@@ -9,6 +9,8 @@ body{
 h1{
   display: flex;
   justify-content: center;
+  background: linear-gradient(0.25turn, blue, lightblue);
+  padding:10px
 }
 
 section{
