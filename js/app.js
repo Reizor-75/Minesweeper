@@ -1,4 +1,5 @@
 import {Board} from "./Board.js";
+import * as asset from "./assets.js";
 
 /*-------------------------------- Constants --------------------------------*/
 const easyDiff = [9, 10];
@@ -43,7 +44,6 @@ function leftClick(evt){
   b.handleLeftClick(evt);
   checkMineClicked(b.clickedMine);
   checkForWin(b.tileCount);
-  
 }
 
 function rightClick(evt){
@@ -59,7 +59,7 @@ function changeDifficulty(evt){
 }
 
 function changeTheme(evt){
-  console.log(evt.target.id);
+  const newTheme = evt.target.id;
 }
 
 function checkForWin(tileCount){
