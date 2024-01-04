@@ -97,8 +97,6 @@ export class Board{
     const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
     if(!currentTile.isFlagged){
       //not flagged
-      currentTile.revealTile();
-      tileEl.classList.add("revealed");
       if(currentTile.containsMine){
         //mine revealed
         tileEl.innerHTML = `<img src="./assets/Images/Mine.png" width="40" height="40">`;
@@ -115,6 +113,9 @@ export class Board{
           //empty tile
           this.clearTiles(tileLocation);
         }
+        //reveal tile 
+        currentTile.revealTile();
+        tileEl.classList.add("revealed");
       }
     }
   }
@@ -173,6 +174,9 @@ export class Board{
     const x = tileLocation[0];
     const y = tileLocation[1];
 
+    //does not run if current tile has been revealed
+    if(this.tiles[x][y].isRevealed) return;
+    
     let tileArray = [[x,y]];
 
     if(this.tiles[x][y].adjacentMines === 0 ){
