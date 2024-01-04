@@ -169,14 +169,8 @@ export class Board{
     }
   }  
 
-  clearTiles(tileLocation){
-    this.clearTileUpperRight(tileLocation);
-    this.clearTileBottomLeft(tileLocation);
-    //tileArray = tileArray.concat(this.clearTileUpperRight(tileLocation));
-    // tileArray = tileArray.concat(this.clearTileBottomLeft(tileLocation));
-  }
   //recursive method to clear all empty adjacent tiles
-  clearTileUpperRight(tileLocation){
+  clearTiles(tileLocation){
     if(this.checkforEdge(tileLocation)) return;
     const x = tileLocation[0];
     const y = tileLocation[1];
@@ -189,30 +183,18 @@ export class Board{
     this.updateTileDisplay([x,y]); 
 
     if(this.tiles[x][y].adjacentMines === 0 ){
-      // check to the right then up
-      //check to see if clearTileUpperRight return an populated array
-      this.clearTileUpperRight([x+1,y]);
-      this.clearTileUpperRight([x,y-1]);
+      // check all four cardinal directions
+      this.clearTiles([x+1,y]);
+      this.clearTiles([x,y-1]);
+      this.clearTiles([x-1,y]);
+      this.clearTiles([x,y+1]);
+
+      //checks corners
+      this.clearTiles([x+1,y-1]);
+      this.clearTiles([x+1,y+1]);
+      this.clearTiles([x-1,y-1]);
+      this.clearTiles([x-1,y+1]);
     }
-  }
-
-  clearTileBottomLeft(tileLocation){
-    if(this.checkforEdge(tileLocation)) return;
-    const x = tileLocation[0];
-    const y = tileLocation[1];
-
-    //does not run if current tile has been revealed
-    if(this.tiles[x][y].isRevealed) return;
-    let tileArray = [[x,y]];
-
-    if(this.tiles[x][y].adjacentMines === 0 ){
-      // check to the right then up
-      //check to see if clearTileUpperRight return an populated array
-
-      if(this.clearTileBottomLeft([x-1,y])) tileArray = tileArray.concat(this.clearTileBottomLeft([x-1,y]));
-      if(this.clearTileBottomLeft([x,y+1]))tileArray = tileArray.concat(this.clearTileBottomLeft([x,y+1]));
-    }
-    return tileArray;
   }
 
   checkforEdge(tileLocation){
