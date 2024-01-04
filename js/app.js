@@ -67,6 +67,7 @@ function changeTheme(evt){
 }
 
 function checkForWin(tileCount){
+  console.log(tileCount);
   if(tileCount === 0){
     resetButtonEl.innerHTML = `<img src=${curAssets[3]} width="20" height="20">`
   }

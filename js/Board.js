@@ -45,7 +45,9 @@ export class Board{
     while(remainingMines > 0){
       const randomX = Math.floor(Math.random() * this.boardSize);
       const randomY = Math.floor(Math.random() * this.boardSize);
+
       if(x === randomX && y === randomY) continue;
+
       if(!this.tiles[randomX][randomY].containsMine){
         this.tiles[randomX][randomY].containsMine = true;
         this.mineLocations.push([randomX , randomY]);
@@ -53,7 +55,6 @@ export class Board{
         this.adjustAdjacentMines(randomX,randomY);
       }
     }
-    console.log(this.mineLocations)
   }
 
   adjustAdjacentMines(x, y){
@@ -76,13 +77,13 @@ export class Board{
 
   //reveals tiles
   handleLeftClick(evt){
-  
     if(this.clickedMine) return;
     if(evt.target.className === "tile"){      
       const tileId = evt.target.id;
       const tileLocation = this.getTileLocation(tileId);
+      
       //check for first click
-        //place mines avoid current location
+      //place mines avoid current location
       if(this.firstClick) {
         this.placeMines(tileLocation[0],tileLocation[1]);
         this.firstClick = false;
@@ -90,7 +91,6 @@ export class Board{
 
       this.updateTileDisplay(tileLocation);
     }
-
   }
 
   getTileLocation(tileId){
@@ -121,14 +121,13 @@ export class Board{
           this.updatefontColor(currentTile.adjacentMines, tileEl);
           tileEl.textContent = currentTile.adjacentMines;
         }
-        else{
-          //empty tile
-          this.clearTiles(tileLocation);
-        }
+        else this.clearTiles(tileLocation);
+
         //reveal tile 
         currentTile.revealTile();
         tileEl.classList.add("revealed");
         this.tileCount--;
+        //add cleared image if there is a clear image
       }
     }
   }
@@ -163,7 +162,7 @@ export class Board{
       if(currentTile.isFlagged) {
         if(this.flagCount >0){
           tileEl.classList.add("flagged");
-          // tileEl.innerHTML = `<img src="./assets/Images/Flag.png" width=40 height="40">`;
+          // tileEl.innerHTML = `<img src="${curAssets[4]}" width=40 height="40">`;
           this.flagCount--;
           }
       }
@@ -172,7 +171,6 @@ export class Board{
         this.flagCount++;
       }
       this.updateFlagCounter();
-
     }
   }  
 
