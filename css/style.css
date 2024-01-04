@@ -153,10 +153,6 @@ background-image: url("data:image/svg+xml,%3Csvg width='38' height='38' viewBox=
   box-shadow: none;
 }
 
-.flagged{  
-  background-color: orange;
-}
-
 .one{
   color:blue;
 }

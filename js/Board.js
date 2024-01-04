@@ -171,8 +171,7 @@ export class Board{
       currentTile.toggleFlag();   
 
       if(currentTile.isFlagged) {
-        if(this.flagCount >0){
-          // tileEl.classList.add("flagged");          
+        if(this.flagCount >0){  
           tileEl.style.backgroundImage = `url("${this.curAssets[4]}")`;
           tileEl.style.backgroundSize = `100%`;
           this.flagCount--;
