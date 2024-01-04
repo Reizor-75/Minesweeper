@@ -169,14 +169,16 @@ export class Board{
   }
   //recursive method to clear all empty adjacent tiles
   clearTileUpperRight(tileLocation){
+    if(this.checkforEdge(tileLocation)) return;
     const x = tileLocation[0];
     const y = tileLocation[1];
 
     let tileArray = [[x,y]];
 
     if(this.tiles[x][y].adjacentMines === 0 ){
-      if(x+1 < this.boardSize) tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
-      if(y-1 >= 0) tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
+      // check to the right then up
+      tileArray = tileArray.concat(this.clearTileUpperRight([x+1,y]));
+      tileArray = tileArray.concat(this.clearTileUpperRight([x,y-1]));
     }
     return tileArray;
   }
