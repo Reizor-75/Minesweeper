@@ -10,14 +10,15 @@ export class Board{
     this.tileCount =  boardSize*boardSize - mineCount;
     this.clickedMine = false;
     this.firstClick = true;
-    this.curAssets = asset.getAssets();;
+    this.curAssets = asset.getAssets();
     this.tiles = [];    
     this.flagCount = this.mineCount;
   }
 
   initBoard(boardAreaEl, difficulty){   
     this.updateFlagCounter();
-
+    let classAttri = `tile`;
+    if(this.curAssets[6] === "Zelda") classAttri = `Zelda-Tile`;
     for(let i = 0; i < this.boardSize; i++){
       let row = [];
       const rowEl = document.createElement("div");
@@ -25,7 +26,7 @@ export class Board{
       
       for(let j = 0; j < this.boardSize; j++){
         const tileEl = document.createElement("div");
-        tileEl.className = `tile`;
+        tileEl.className = classAttri;
         tileEl.classList.add(difficulty);
         tileEl.id = `X${i}Y${j}`
         tileEl.innerHTML = ` `;
@@ -81,7 +82,7 @@ export class Board{
   handleLeftClick(evt){
     asset.playClick();
     if(this.clickedMine) return;
-    if(evt.target.classList.contains("tile")){      
+    if(evt.target.classList.contains("tile") ||evt.target.classList.contains("Zelda-Tile")){      
       const tileId = evt.target.id;
       const tileLocation = this.getTileLocation(tileId);
       
@@ -135,7 +136,8 @@ export class Board{
       else this.clearTiles(tileLocation);
 
       //reveal tile       
-      tileEl.classList.add("revealed");
+      if(this.curAssets[6] === "Zelda") tileEl.classList.add(`Zelda-revealed`);
+      else tileEl.classList.add("revealed");
     }
   }
 
@@ -170,7 +172,7 @@ export class Board{
   //place flags
   handleRightClick(evt){
     evt.preventDefault();
-    if(evt.target.classList.contains("tile")){
+    if(evt.target.classList.contains("tile") ||evt.target.classList.contains("Zelda-Tile")){
       const tileId = evt.target.id;
       const tileEl = document.getElementById(tileId);
       const tileLocation = this.getTileLocation(tileId);

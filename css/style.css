@@ -133,6 +133,16 @@ body{
   box-shadow: inset -.1em -.1em dimgray, inset .1em .1em white;
   -webkit-text-stroke: 1px rgb(50,50, 50, 1);
 }
+.Zelda-Tile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: olivedrab;
+  border: solid 1px;
+  border-color: darkolivegreen;
+  box-shadow: inset -.1em -.1em darkolivegreen, inset .1em .1em olivedrab;
+  -webkit-text-stroke: 1px rgb(50,50, 50, 1);
+}
 .easy{
   width: 40px;
   height: 40px;
@@ -156,6 +166,11 @@ background-image: url("data:image/svg+xml,%3Csvg width='38' height='38' viewBox=
 
 .revealed{  
   background-color: darkgray;
+  box-shadow: none;
+}
+
+.Zelda-revealed{  
+  background-color: darkolivegreen;
   box-shadow: none;
 }
 .revealedMine{

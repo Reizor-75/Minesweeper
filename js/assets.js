@@ -6,7 +6,7 @@ let undo = new Audio('../assets/Sounds/Undo.wav');
 
 let theme = "";
 function setTheme(newTheme){
-  theme = newTheme
+  theme = newTheme;
 }
 
 function getAssets(){
@@ -46,6 +46,7 @@ function getAssets(){
     asset.push(winImage);
     asset.push(flagImage);
     asset.push(clearImage);
+    asset.push(theme);
   return asset;
 }
 
