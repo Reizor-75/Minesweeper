@@ -36,6 +36,7 @@ retro theme: A link to the Past.
 - [x] Switch Themes (Retro MineSweeper, A Link to the past)
 - [x] Add Timer
 - [ ] Add a Space Invaders Theme
-- [ ] Add Sound
+- [x] Add Sound
 - [ ] Add Best Time Tracker
 - [ ] Add Leader Board
+- [ ] Show all Mines when loose

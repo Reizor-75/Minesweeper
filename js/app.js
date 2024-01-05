@@ -44,6 +44,7 @@ function initGame(){
 }
 
 function resetBoard(){  
+  seconds = 0;
   boardAreaEl.innerHTML = ""  
   activeWinEl.style.backgroundColor = "";
   initGame();
