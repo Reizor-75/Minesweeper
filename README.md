@@ -23,20 +23,35 @@ retro theme: A link to the Past.
 - JavaScript
 - HTML
 - Git
-## Credit
-  Image assets were drawn by me. However Legend of Zelda A Link to the Past is a property of Nintendo.
+## Attributions 📣
+
+**Font** RetroSweeper uses [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) designed by CodeMan38 as the main font. Sourced from [fonts.google.com](https://fonts.google.com/).
+
+**Confetti** RetroSweeper uses confetti.js provided by Ben Manely through GA.
+
+**Sound assets** 
+RetroSweeper uses a number of sound assets found on [freesound.org](https://freesound.org/). Sounds include the following: 
+- S: [Button Click.wav](https://freesound.org/people/KorgMS2000B/sounds/54405/) by KorgMS2000B | License: Creative Commons 0
+- S: [Error_03.wav](https://freesound.org/people/distillerystudio/sounds/327736/) by distillerystudio | License: Attribution 3.0
+- S: [Correct Choice](https://freesound.org/people/unadamlar/sounds/476178/) by unadamlar | License: Creative Commons 0
+- S: [OKAY!](https://freesound.org/people/Scrampunk/sounds/345299/) by Scrampunk | License: Attribution 4.0
+- S: [Cancel/miss chime](https://freesound.org/people/Raclure/sounds/405548/) by Raclure | License: Creative Commons 0
+
+**Image assets** RetroSweeper uses image assets drawn by myself personally. **However all Image assets were inspired by:**
+- Legend of Zelda A Link to the Past (A property of Nintendo)
+- Windows 98 MineSweeper
 
 
 ## Ice Box 🧊
 - [x] Fix Flag Display
 - [x] Add revealed tile Image
-- [x] No Mines are on or adjacent to first click
+- [x] No Mines on/adjacent to first click of the game
 - [x] Add Confetti
 - [x] Switch difficulties (Easy, Medium, Hard)
-- [x] Switch Themes (Retro MineSweeper, A Link to the past)
+- [x] Switch Themes (Retro MineSweeper, A Link to the Past)
 - [x] Add Timer
 - [ ] Add a Space Invaders Theme
 - [x] Add Sound
 - [ ] Add Best Time Tracker
-- [ ] Add Leader Board
+- [ ] Add Leaderboard
 - [ ] Show all Mines when loose
