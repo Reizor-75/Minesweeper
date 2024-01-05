@@ -48,13 +48,13 @@ export class Board{
       if(x === randomX && y === randomY) continue;
       let isAdjacent = false;
       const adjacentLocales = this.getAdjacentLocations([x,y]);
+      
       for(let i = 0; i <adjacentLocales.length; i++ ){
         if(adjacentLocales[i][0] === randomX && adjacentLocales[i][1] === randomY){
           isAdjacent = true;
           break;
         }
       }
-
       if(isAdjacent){
         continue;
       }
@@ -105,37 +105,35 @@ export class Board{
   }
 
   updateTileDisplay(tileLocation){
-    const currentTile = this.tiles[tileLocation[0]][tileLocation[1]];
-    const tileEl = document.getElementById(`X${tileLocation[0]}Y${tileLocation[1]}`)
+    const x = tileLocation[0];
+    const y = tileLocation[1];
+    const currentTile = this.tiles[x][y];
+    const tileEl = document.getElementById(`X${x}Y${y}`)
 
-    if(!currentTile.isFlagged){
-      //not flagged
-      if(currentTile.containsMine){
-        //mine revealed
-        tileEl.classList.add("revealedMine"); 
-        tileEl.style.backgroundImage = `url("${this.curAssets[0]}")`;
-        tileEl.style.backgroundSize = `100%`;
-        let activeWinEl = document.querySelector(".active-Window");
-        activeWinEl.style.backgroundColor = "darkred";
-        this.clickedMine = true;
-      }
-      else{
-        //tile revealed
-        this.tileCount--;
-        tileEl.style.backgroundImage = `url("${this.curAssets[5]}")`;
-        tileEl.style.backgroundSize = `100%`;
-        if(currentTile.adjacentMines != 0){
-          //non-empty tile            
-          this.updatefontColor(currentTile.adjacentMines, tileEl);
-          tileEl.textContent = currentTile.adjacentMines;
-        }
-        else this.clearTiles(tileLocation);
+    if(currentTile.isFlagged)return;
 
-        //reveal tile 
-        currentTile.revealTile();
-        tileEl.classList.add("revealed");
-        //add cleared image if there is a clear image
+    //not flagged
+    if(currentTile.containsMine){
+      //mine revealed
+      tileEl.classList.add("revealedMine");  
+      this.updateTileImage(tileEl, this.curAssets[0]);
+      let activeWinEl = document.querySelector(".active-Window");
+      activeWinEl.style.backgroundColor = "darkred";
+      this.clickedMine = true;
+    }
+    else{
+      //tile revealed      
+      this.updateTileImage(tileEl, this.curAssets[5]);
+      if(currentTile.adjacentMines != 0){
+        //non-empty tile            
+        this.updatefontColor(currentTile.adjacentMines, tileEl);
+        tileEl.textContent = currentTile.adjacentMines;
+        this.revealTile(tileLocation);
       }
+      else this.clearTiles(tileLocation);
+
+      //reveal tile       
+      tileEl.classList.add("revealed");
     }
   }
 
@@ -150,6 +148,18 @@ export class Board{
     else tileEl.classList.add("eight");
   }
 
+  revealTile(tileLocation){    
+    if(this.tiles[tileLocation[0]][tileLocation[1]].isRevealed)return;
+    this.tiles[tileLocation[0]][tileLocation[1]].revealTile();
+    this.tileCount--;
+  }
+
+  updateTileImage(tileEl, curAsset){
+    if(curAsset) tileEl.style.backgroundImage = `url("${curAsset}")`;
+    else tileEl.style.backgroundImage = ``;
+    tileEl.style.backgroundSize = `100%`;
+  }
+  
   updateFlagCounter(){
     const flagCounterEl = document.getElementById("flag-Counter");
     flagCounterEl.innerHTML = this.flagCount > 9 ? `0${this.flagCount}`:`00${this.flagCount}`;
@@ -167,16 +177,14 @@ export class Board{
       if(currentTile.isRevealed) return;
 
       currentTile.toggleFlag();   
-
       if(currentTile.isFlagged) {
         if(this.flagCount > 0){  
-          tileEl.style.backgroundImage = `url("${this.curAssets[4]}")`;
-          tileEl.style.backgroundSize = `100%`;
+          this.updateTileImage(tileEl, this.curAssets[4]);;
           this.flagCount--;
-          }
+        }
       }
-      else {
-        tileEl.style.backgroundImage = ``;
+      else {        
+        this.updateTileImage(tileEl);
         this.flagCount++;
       }
       this.updateFlagCounter();
@@ -195,13 +203,13 @@ export class Board{
     if(this.tiles[x][y].isRevealed) return;
 
     //reveal current tile
-    this.tiles[x][y].revealTile();
+    this.revealTile(tileLocation);
     this.updateTileDisplay([x,y]); 
 
     adjacentLocales.forEach((locale)=>{
       if(this.tiles[x][y].adjacentMines === 0 )this.clearTiles(locale);
     });
-  }//recursive method to clear all empty adjacent tiles
+  }
 
   getAdjacentLocations(tileLocation){
     const x = tileLocation[0];
@@ -226,10 +234,4 @@ export class Board{
 
     return adjacentLocations;
   }
-
-  checkRemaingTiles(){
-    let unrevealedTilesCount = 0;
-
-    return;
-  }  
 }

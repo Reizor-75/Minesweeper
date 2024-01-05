@@ -4,8 +4,9 @@ body{
   justify-content: center;
   background-color: black;
   font-family: 'Press Start 2P';
-  border: outset 6px lightgrey;   
+  /* border: outset 6px lightgrey;    */
   min-width: 600px;
+  height: 100vh;
   margin: 0 10%;
 }
 
@@ -14,7 +15,9 @@ body{
   align-items: center;
   color: white;
   background: linear-gradient(0.25turn, blue, lightblue);
-  padding:10px
+  border: outset 6px lightgrey; 
+  border-bottom: none;
+  padding:10px;
 }
 .icon{
   padding:0px 5px;
@@ -25,6 +28,8 @@ body{
   justify-content: center;
   background-color: grey;
   border: outset 6px lightgrey;
+  border-top: none;
+  min-height: 80vh;
 }
 
 .sidebar{  
@@ -59,7 +64,6 @@ body{
 .game-Area{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 80%;
 }
 
@@ -67,6 +71,7 @@ body{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  height: 20%;
   padding: 10px 0px;
   border: solid 10px lightgrey;
   border-bottom: none;
@@ -109,6 +114,8 @@ body{
 .board-Area{
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 80%;
   border: solid 10px lightgrey;
   padding: 20px;  
   box-shadow: inset .2em .2em dimgray, inset -.2em -.2em white;

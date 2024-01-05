@@ -30,11 +30,12 @@ retro theme: A link to the Past.
 ## Ice Box 🧊
 - [x] Fix Flag Display
 - [x] Add revealed tile Image
-- [x] Not Mines are on or adjacent to first click
+- [x] No Mines are on or adjacent to first click
 - [x] Add Confetti
 - [x] Switch difficulties (Easy, Medium, Hard)
 - [x] Switch Themes (Retro MineSweeper, A Link to the past)
-- [ ] Add Timer
+- [x] Add Timer
 - [ ] Add a Space Invaders Theme
+- [ ] Add Sound
 - [ ] Add Best Time Tracker
 - [ ] Add Leader Board
