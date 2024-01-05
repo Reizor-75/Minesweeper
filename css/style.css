@@ -35,7 +35,6 @@ body{
 .sidebar{  
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
   color: white;
   border: solid 10px lightgrey;
@@ -48,17 +47,20 @@ body{
   display: flex;
   width:50%;
   padding: 5px;
-  background-color: lightgrey
+  font-weight: bold;
+  background-color: lightgrey;
+  margin: 20px 0px;
 }
 
 .themesSection{ 
   display:flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 20px 0px;
 }
 
-.theme{
-  margin:10px;
+.theme{  
+  margin: 20px 0px;
 }
 
 .game-Area{
@@ -129,22 +131,22 @@ body{
   border: solid 1px;
   border-color: grey;
   box-shadow: inset -.1em -.1em dimgray, inset .1em .1em white;
+  -webkit-text-stroke: 1px rgb(50,50, 50, 1);
 }
 .easy{
   width: 40px;
   height: 40px;
   font-size: 24px;  
-  -webkit-text-stroke: 1px rgb(0,0,0, 1);
 }
 .medium{
   width: 30px;
   height: 30px;
-  font-size: 24px;
+  font-size: 18px;
 }
 .hard{
   width: 25px;
   height: 25px;  
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .zelda{
