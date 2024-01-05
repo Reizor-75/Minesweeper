@@ -31,11 +31,13 @@ initGame();
 
 /*-------------------------------- Functions --------------------------------*/
 function initGame(){
-  curAssets = asset.changeThemes(curTheme);
+  asset.setTheme(curTheme);
+  curAssets = asset.getAssets();
+
   if(curTheme === "Zelda") activeWinEl.classList.add("zelda");
   else activeWinEl.classList.remove("zelda");
 
-  board= new Board(currentDiff[0], currentDiff[1], curAssets);
+  board= new Board(currentDiff[0], currentDiff[1]);
   board.initBoard(boardAreaEl, currentDiff[2]);
   updateResetButton(curAssets[1]);
   startTimer();
@@ -48,7 +50,7 @@ function resetBoard(){
 }
 
 function leftClick(evt){
-  board.handleLeftClick(evt);
+  board.handleLeftClick(evt);  
   checkMineClicked(board.clickedMine);
   checkForWin(board.tileCount);
 }
@@ -73,13 +75,15 @@ function checkForWin(tileCount){
   if(tileCount === 0){    
     confetti.start(2000);    
     updateResetButton(curAssets[3]);
+    asset.playWin();
     clearInterval(timerIntervalID);
   }
 }
 
 function checkMineClicked(clicked){
   if(clicked){
-    updateResetButton(curAssets[2]);    
+    updateResetButton(curAssets[2]); 
+    asset.playLoose();   
     clearInterval(timerIntervalID);
   }
 }

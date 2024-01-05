@@ -1,5 +1,6 @@
 
 import {Tile} from "./Tile.js";
+import * as asset from "./assets.js";
 
 export class Board{
 
@@ -9,7 +10,7 @@ export class Board{
     this.tileCount =  boardSize*boardSize - mineCount;
     this.clickedMine = false;
     this.firstClick = true;
-    this.curAssets = currentAssets;
+    this.curAssets = asset.getAssets();;
     this.tiles = [];    
     this.flagCount = this.mineCount;
   }
@@ -78,6 +79,7 @@ export class Board{
 
   //reveals tiles
   handleLeftClick(evt){
+    asset.playClick();
     if(this.clickedMine) return;
     if(evt.target.classList.contains("tile")){      
       const tileId = evt.target.id;
@@ -179,11 +181,13 @@ export class Board{
       currentTile.toggleFlag();   
       if(currentTile.isFlagged) {
         if(this.flagCount > 0){  
-          this.updateTileImage(tileEl, this.curAssets[4]);;
+          asset.playFlag();
+          this.updateTileImage(tileEl, this.curAssets[4]);
           this.flagCount--;
         }
       }
-      else {        
+      else {     
+        asset.playUndo();   
         this.updateTileImage(tileEl);
         this.flagCount++;
       }
