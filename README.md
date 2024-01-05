@@ -5,6 +5,7 @@
 This is a recreation of the classic Windows 98 version of MineSweeper with an additional
 retro theme: A link to the Past.
 
+<img src="./assets/Images/LOZ-ScreenShot.png" alt="Zelda Theme" width="60%" height="60%">
 
 ## Game Play
 - The goal of the game is to clear all the tiles on the board that do not contain a mine.
